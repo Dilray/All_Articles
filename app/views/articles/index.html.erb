@@ -140,11 +140,11 @@
     <div class="article-actions"> --></div>
   </div>
 
-  <div class="article-list">
-    <% @articles.each do |article| %>
+<!--<div class="article-list">
+     <%#= @articles.each do |article| %>
       <div class="article-item">
-        <div class="article-title"><%= article.title %></div>
-        <div class="article-body"><%= article.body %></div>
+        <div class="article-title"><%#= article.title %></div>
+        <div class="article-body"><%#= article.body %></div>
         <div class="article-actions">
           <form action="articles/show" method="get" style="display:inline;">
             <button type="submit">Show</button>
@@ -152,12 +152,12 @@
           <form action="articles/edit" method="get" style="display:inline;">
             <button type="submit">Edit</button>
           </form>
-          <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
+          <%#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
         </div>
       </div>
-    <% end %>
+    <%# end %>
   </div>
-</div>
+</div> -->
 
 <!-- Кнопка для добавления новой статьи -->
 <form action="articles/new" method="get">
@@ -170,7 +170,7 @@
   <%#= link_to "Edit Account", edit_user_registration_path %>
   <%#= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method:  :delete %>
   <%# else %>
-  <%= link_to "Login", new_user_password_path %>
-  <%= link_to "Create Account", new_user_registration_path %>
+  <%#= link_to "Login", new_user_password_path %>
+  <%#= link_to "Create Account", new_user_registration_path %>
 <%# end %>
 
