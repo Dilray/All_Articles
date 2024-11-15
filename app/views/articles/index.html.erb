@@ -1,0 +1,176 @@
+
+<%#= image_tag("/images/books.jpg") %>
+<style>
+    /* Заголовок */
+    .header-title {
+        color: orange;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* Навигационная панель */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #50463d;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .navbar-links a:hover {
+        background-color: #0056b3;  /* цвет при наведении */
+    }
+
+    .navbar-links a.login-button {
+        color: white;
+        padding: 5px 10px; /* отступы для кнопки */
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .navbar-links a.login-button:hover {
+        background-color: #0056b3; /* цвет при наведении */
+    }
+
+    /* Стили для основного контейнера статей */
+    /*.articles {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+    }*/
+
+    /* Стили для статей */
+    /*.article-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }*/
+
+    /*.article-title,
+    .article-body,
+    .article-actions {
+        margin: 0 10px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .article-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }*/
+
+    .destroy-button {
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .destroy-button:hover {
+        background-color: darkred;
+    }
+
+    /* Кнопка добавления статей */
+    .add-button {
+        color: white;
+        background-color: red;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .add-button:hover {
+        background-color: darkred; 
+    }
+
+</style>
+
+<div class="navbar">
+  <h1 class="header-title">AllArticles</h1>
+  <div class="navbar-links">
+    <a href="#">Поиск</a>
+    <a href="#">Новые статьи</a>
+    <a href="#">Свои статьи</a>
+
+  <% if session[:user_id] %>
+    <%= link_to "Выйти", logout_path, method: :delete %>
+  <% else %>
+    <%= link_to "Войти", "/auth/google_oauth2", class: 'login-button' %>
+  <% end %>
+  </div>
+</div>
+
+<!-- Основной контейнер для статей -->
+<div class="articles">
+  <div class="article-header">
+    <!--<div class="article-title">Title</div>
+    <div class="article-body">Body</div>
+    <div class="article-actions"> --></div>
+  </div>
+
+  <div class="article-list">
+    <% @articles.each do |article| %>
+      <div class="article-item">
+        <div class="article-title"><%= article.title %></div>
+        <div class="article-body"><%= article.body %></div>
+        <div class="article-actions">
+          <form action="articles/show" method="get" style="display:inline;">
+            <button type="submit">Show</button>
+          </form>
+          <form action="articles/edit" method="get" style="display:inline;">
+            <button type="submit">Edit</button>
+          </form>
+          <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Кнопка для добавления новой статьи -->
+<form action="articles/new" method="get">
+  <button type="submit" class="add-button">Добавить статью</button>
+</form>
+
+<%# if current_user %>
+<!--  <h2> <%#=current_user.email %> </h2>-->
+  <%#= image_tag(current_user.avatar_url) %>
+  <%#= link_to "Edit Account", edit_user_registration_path %>
+  <%#= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method:  :delete %>
+  <%# else %>
+  <%= link_to "Login", new_user_password_path %>
+  <%= link_to "Create Account", new_user_registration_path %>
+<%# end %>
+

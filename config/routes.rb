@@ -1,14 +1,26 @@
 Rails.application.routes.draw do
+  #root 'pages#home'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  omniauth_callbacks: 'users/omniauth_callbacks'
+  }
+  resources :articles
+  root "articles#index"
+  get 'articles/index' => 'articles#index'
+  get 'articles/show' => 'articles#show'
+  get 'articles/new' => 'articles#new'
+  get 'articles/create' => 'articles#create'
+  get 'articles/edit' => 'articles#edit'
+  get 'articles/update' => 'articles#update'
+  get 'articles/destroy' => 'articles#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
   # Defines the root path route ("/")
-  # root "posts#index"
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: redirect('/')
+  get '/auth/google_oauth2', to: 'sessions#google_auth'
+  # get '/google/auth', to: 'sessions#google_auth'
+  delete '/logout', to: 'sessions#destroy'
+  #  devise_for :users
 end

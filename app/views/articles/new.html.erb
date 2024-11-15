@@ -1,0 +1,42 @@
+<h1>New Article</h1>
+
+<%= form_with(model: @article, local: true) do |form| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <div class="error-messages">
+        <ul>
+          <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="label">
+      <%= form.label :title %>
+    </div>
+    <div class="input">
+      <%= form.text_field :title %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="label">
+      <%= form.label :body %>
+    </div>
+    <div class="input">
+      <%= form.text_area :body %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<div class="back-link">
+  <%= link_to 'Back', '/' %>
+</div>
