@@ -1,24 +1,41 @@
-# README
+Добро пожаловать в AllArticles!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## О проекте
 
-Things you may want to cover:
+AllArticles - это веб-приложение, построенное на Ruby on Rails, которое позволяет любителям книг/статей взаимодействовать друг с другом и делиться статьями с другими. Пользователи могут:
 
-* Ruby version
+ Прочитать интересные статьи, написанные другими пользователями.
+ Опубликовать свои собственные статьи, которые им понравились.
 
-* System dependencies
+## Технологии стека
 
-* Configuration
+AllArticles использует следующий стек технологий:
 
-* Database creation
+ - Ruby on Rails: Веб-фреймворк<br>
+ - Postgresql: Система управления базами данных<br>
+ - Devise: Облегченная система аутентификации и регистрации<br>
+ - Turbolinks: Улучшение производительности навигации<br>
+ - Materialize CSS: Фреймворк Material Design для стилизации
 
-* Database initialization
+## Настройка
 
-* How to run the test suite
+### Предварительные условия
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby 3.0 или выше<br>
+- Rails 7.0 или выше<br>
+- Postgresql 12 или выше
 
-* Deployment instructions
+### Установка
 
-* ...
+1. Клонируйте репозиторий: `git clone https://github.com/example/AllArticles.git`
+2. Перейдите в каталог проекта: `cd AllArticles`
+3. Установите зависимости: `bundle install`
+4. Создайте базу данных Postgresql и выполните миграции: `rails db:create db:migrate`
+5. Запустите сервер разработки: `rails s`
+
+### Использование
+
+ Перейдите в браузере на `http://localhost:3000`/`http://127.0.0.1:3000/users/auth/google_oauth2/callback`.
+ Зарегистрируйтесь или войдите.
+ Найдите статьи, которые вас интересуют.
+ Опубликуйте свою собственную статью, перейдя на страницу "Создать статью".
