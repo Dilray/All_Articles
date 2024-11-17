@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   # get '/google/auth', to: 'sessions#google_auth'
   delete '/logout', to: 'sessions#destroy'
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    registrations: 'users/registrations'
   }
 
 end
