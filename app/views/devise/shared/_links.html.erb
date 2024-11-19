@@ -24,9 +24,7 @@
                  url: omniauth_authorize_path(resource_name, provider),
                  method: :post,
                  data: {turbo: "false"} do |f| %>
-      <%#= image_tag("books.jpg") %>
-      <%= f.submit "Login", type: "image", src: image_path("google_oauth.png") %>
-
+    <%= f.submit "Login", type:"image", src: url_for("/assets/google_oauth.png") %>
     <% end %>
   <% end %>
 <% end %>
