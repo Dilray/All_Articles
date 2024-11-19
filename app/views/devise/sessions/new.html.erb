@@ -1,26 +1,89 @@
-<h2>Log in</h2>
+<style>
+    body {
+        background-color: #eaceb6;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    /*Вход*/
+    .header-title {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .rectangle-login {
+        width: 500px;
+        height: 500px;
+        background-color: #e1e1e4;
+        margin: 20px;
+
+    }
+
+    .form-inputs
+    {
+        text-align: center;
+    }
+
+    input
+    {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px;
+        border: 2px solid #007BFF;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        margin-bottom: 16px;
+    }
+
+    input:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .checkbox-wrapper {
+        margin-top: 16px;
+        width: 10%;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+
+    }
+
+</style>
+
+<div class="rectangle-login">
+  <h1 class="header-title">Вход</h1>
+
+  <div class = "form-inputs"> <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+
   </div>
-
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: "Пароль" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="checkbox-wrapper">
+        <%= f.check_box :remember_me, class: "remember-me-checkbox" %>
+        <%= f.label :remember_me, class: "remember-me-label" %>
+      </div>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Войти" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
