@@ -19,14 +19,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Update Article" %>
   </div>
 <% end %>
 
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', '/' %>
+<%= link_to 'Back', articles_path %>

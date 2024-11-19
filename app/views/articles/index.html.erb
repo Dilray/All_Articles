@@ -91,34 +91,65 @@
         justify-content: center;
     }*/
 
-    .destroy-button {
-        background-color: red;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 5px;
-        cursor: pointer;
-    }
-
-    .destroy-button:hover {
-        background-color: darkred;
-    }
-
-    /* Кнопка добавления статей */
-    .add-button {
-        color: white;
-        background-color: red;
+    .btn {
         padding: 10px 15px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        transition: background-color 0.3s;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
     }
 
-    .add-button:hover {
-        background-color: darkred; 
+    .btn-show {
+        background-color: #8b4513; /* Коричневый */
+        color: white;
+    }
+
+    .btn-edit {
+        background-color: #8b4513; /* Коричневый */
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: #f8173e; /* Красный */
+        color: white;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-show:hover {
+        background-color: #45a049; /* Темно-зеленый при наведении */
+    }
+
+    .btn-edit:hover {
+        background-color: #1e88e5; /* Темно-синий при наведении */
+    }
+
+    .btn-delete:hover {
+        background-color: #d32f2f; /* Темно-красный при наведении */
+    }
+
+    td {
+        padding: 10px; /* Отступы внутри ячеек */
+        text-align: left; /* Выравнивание текста по левому краю */
+    }
+
+    .article-title {
+        font-weight: bold; /* Жирный шрифт для заголовка статьи */
+        font-size: 18px; /* Размер шрифта для заголовка */
+        color: #333; /* Цвет текста */
+    }
+
+    .article-author {
+        font-style: italic; /* Курсив для имени автора */
+        color: #555; /* Цвет текста для автора */
+    }
+
+    /* Добавление эффекта при наведении на строку таблицы */
+    tr:hover td {
+        background-color: #f0f0f0; /* Цвет фона при наведении */
     }
 
 </style>
@@ -169,7 +200,28 @@
   </div>
 </div> -->
 
-<!-- Кнопка для добавления новой статьи -->
-<form action="articles/new" method="get">
-  <button type="submit" class="add-button">Добавить статью</button>
-</form>
+<%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Автор</th>
+<!--    <th>Content</th>-->
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td class="article-title"><%= article.title %></td>
+      <td class="article-author"><%= article.author %></td>
+<!--      <td><%#= article.content %></td>-->
+      <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+      <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
+      <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td>  <!-- "вы уверены?" пока не работает хз почему -->
+    </tr>
+  <% end %>
+  </tbody>
+</table>

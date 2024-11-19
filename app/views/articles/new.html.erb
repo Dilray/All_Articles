@@ -1,42 +1,110 @@
-<h1>New Article</h1>
+<style>
 
-<%= form_with(model: @article, local: true) do |form| %>
+  body {
+      background-color: #eaceb6;
+  }
+
+    .page-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+  .article-form {
+      background-color: #8b4513;
+      max-width: 600px;
+      margin: 0 auto; /* Центрирование формы */
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+  }
+
+  .field {
+      margin-bottom: 15px;
+      background-color: #8b4513;
+  }
+
+  .label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+  }
+
+  .input, .textarea {
+      width: 100%; /* Ширина на 100% */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+
+  .textarea {
+      height: 150px; /* Высота текстовой области */
+  }
+
+  /* Если у вас есть отдельный контейнер для текстовой области, добавьте его */
+  .textarea-container {
+      display: flex; /* Используем Flexbox для центрирования */
+      justify-content: center; /* Центрируем содержимое по горизонтали */
+  }
+
+  /* Убедитесь, что элементы ввода и текстовые области имеют одинаковую ширину */
+  .input, .textarea {
+      max-width: 100%; /* Ограничение ширины на 100% */
+  }
+
+  .error-explanation {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+  }
+
+  .submit-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .submit-button:hover {
+      background-color: #0056b3;
+  }
+
+</style>
+
+<h1 class="page-title">Новая статья</h1>
+
+<%= form_with(model: @article, local: true, html: { class: 'article-form' }) do |form| %>
   <% if @article.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="error-explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
-      <div class="error-messages">
-        <ul>
-          <% @article.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+      <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <div class="label">
-      <%= form.label :title %>
-    </div>
-    <div class="input">
-      <%= form.text_field :title %>
-    </div>
+    <%= form.label "Название", class: 'label' %>
+    <%= form.text_field :title, class: 'input' %>
   </div>
 
   <div class="field">
-    <div class="label">
-      <%= form.label :body %>
-    </div>
-    <div class="input">
-      <%= form.text_area :body %>
-    </div>
+    <%= form.label "Автор", class: 'label' %>
+    <%= form.text_field :author, class: 'input' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Текст вашей статьи", class: 'label' %>
+    <%= form.text_area :content, class: 'textarea' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Опубликовать статью', class: 'submit-button' %>
   </div>
 <% end %>
-
-<div class="back-link">
-  <%= link_to 'Back', '/' %>
-</div>
