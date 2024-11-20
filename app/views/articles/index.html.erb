@@ -163,7 +163,7 @@
 
     <% if current_user %>
       <h2><%= current_user.email %></h2>
-      <%= image_tag(current_user.avatar_url) %>
+      <%#= image_tag(current_user.avatar_url) %>
       <%= link_to "Изменить аккаунт", edit_user_registration_path %>
       <%= button_to "Выйти", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
     <% else %>
