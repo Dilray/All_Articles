@@ -1,12 +1,18 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-     def index
-      @articles = Article.all
-     end
+     # def index
+     #  @articles = Article.all
+     # end
+
+  def index
+    # @articles = Article.where(current_user: :uid)
+    @articles = Article.all
+  end
+
   def show
   end
   def new
-    @article = Article.new
+     @article = Article.new
   end
 
     def edit
@@ -31,7 +37,7 @@ class ArticlesController < ApplicationController
     end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to articles_path, notice: 'Article was successfully created.'
     else

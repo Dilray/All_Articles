@@ -159,10 +159,13 @@
   <div class="navbar-links">
     <a href="#">Поиск</a>
     <a href="#">Новые статьи</a>
-    <a href="#">Свои статьи</a>
-
     <% if current_user %>
-      <h2><%= current_user.email %></h2>
+      <a href="articles/my_articles">Свои статьи</a>
+    <% else %>
+      <a href="<%= new_user_session_path %>">Свои статьи</a>
+    <% end %>
+    <% if current_user %>
+      <h2><%= "Привет, #{current_user.full_name}!" %></h2>
       <%#= image_tag(current_user.avatar_url) %>
       <%= link_to "Изменить аккаунт", edit_user_registration_path %>
       <%= button_to "Выйти", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
@@ -218,9 +221,13 @@
       <td class="article-title"><%= article.title %></td>
       <td class="article-author"><%= article.author %></td>
 <!--      <td><%#= article.content %></td>-->
+      <% if current_user %>
       <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
       <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
       <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td>  <!-- "вы уверены?" пока не работает хз почему -->
+      <% else %>
+        <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

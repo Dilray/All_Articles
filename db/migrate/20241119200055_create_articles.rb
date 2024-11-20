@@ -5,6 +5,7 @@ class CreateArticles < ActiveRecord::Migration[8.0]
       t.string :author, null: false
       t.text :content, null: false
       t.integer :rating, null: false, default: 0
+      t.integer :user_id, null: false, default: 0
       # t.datetime :created_at, default: -> { 'CURRENT_TIMESTAMP' }
 
       t.timestamps

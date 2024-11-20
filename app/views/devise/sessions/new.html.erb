@@ -61,6 +61,16 @@
         background-color: #0056b3;
     }
 
+    .btn-secondary {
+        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        color: white;
+        margin-top: 10px; /* Отступ сверху для кнопки "Назад" */
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
     .links {
         text-align: center;
         margin-top: 20px;
@@ -73,7 +83,6 @@
     .links a:hover {
         text-decoration: underline;
     }
-
 </style>
 
 <div class="login-container">
@@ -99,10 +108,12 @@
 
     <div class="actions">
       <%= f.submit "Войти в аккаунт", class: "btn btn-primary" %>
+      <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
     </div>
   <% end %>
 
   <div class="links">
     <%= render "devise/shared/links" %>
   </div>
+
 </div>

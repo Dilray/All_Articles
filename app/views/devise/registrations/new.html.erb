@@ -66,6 +66,23 @@
         color: #999;
     }
 
+    .btn {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        color: white;
+        margin-top: 10px; /* Отступ сверху для кнопки "Назад" */
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
 </style>
 
 <!DOCTYPE html>
@@ -82,6 +99,11 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label "Никнейм" %><br />
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: "input-field" %>
+    </div>
 
     <div class="field">
       <%= f.label "Почта" %><br />
@@ -103,6 +125,7 @@
 
     <div class="actions">
       <%= f.submit "Зарегистрироваться", class: "submit-button" %>
+      <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
     </div>
   <% end %>
 

@@ -1,0 +1,17 @@
+<h1>Мои статьи</h1>
+
+<% if @articles.any? %>
+  <ul>
+    <% @articles.each do |article| %>
+      <li>
+        <h2><%= link_to article.title, article_path(article) %></h2>
+        <p><%= truncate(article.content, length: 100) %></p>
+        <p><%= link_to 'Читать далее', article_path(article) %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Вы пока ничего не публиковали...</p>
+<% end %>
+
+<%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary' %>

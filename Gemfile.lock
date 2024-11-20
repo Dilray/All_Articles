@@ -402,6 +402,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.0)
   rubocop-rails-omakase
+  securerandom
   selenium-webdriver
   solid_cable
   solid_cache
