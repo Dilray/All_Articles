@@ -194,8 +194,8 @@
         background-color: #f0f0f0;
         padding: 20px;
         border-radius: 10px;
-        max-height: 200px; /* Установите желаемую максимальную высоту */
-        overflow-y: auto; /* Добавляем вертикальную прокрутку */
+        /*max-height: 200px; !* Установите желаемую максимальную высоту *!*/
+        /*overflow-y: auto; !* Добавляем вертикальную прокрутку *!*/
     }
 
     .article-section-title {
@@ -215,6 +215,137 @@
         background-color: #3C763D; /* Темно-зеленый */
     }
 
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .about {
+        text-align: center;
+        padding: 50px;
+        background-color: #f5f5f5;
+    }
+
+    .about p {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .review {
+        background-color: #e0e0e0;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .review p:first-child {
+        font-style: italic;
+    }
+
+    .reviews {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .review {
+        width: 300px;
+        margin: 20px;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Анимация появления отзывов */
+    .review {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .reviews:hover .review {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .about h3 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about {
+        background-color: #50463d;
+        text-align: center;
+        padding: 50px;
+        /*overflow-y: auto;*/
+        max-height: 400px;
+        color: white;
+    }
+
+    .about-header {
+        margin-bottom: 30px;
+        /*overflow-y: auto;*/
+    }
+
+    .about-mission, .about-values, .about-team {
+        margin-bottom: 30px;
+    }
+
+    .about h3 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about ul {
+        list-style: disc;
+        padding-left: 20px;
+    }
+
+    .news-categories {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .category-btn {
+        /* Стиль для кнопок категорий */
+    }
+
+    .news-list {
+        /* Стиль для списка новостей */
+    }
+
+    .user-greeting {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .user-greeting h2 {
+        font-family: 'Montserrat', sans-serif; /* Замените на выбранный шрифт */
+        font-size: 24px;
+        color: #333;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 </style>
 
 <div class="navbar">
@@ -228,10 +359,12 @@
       <a href="<%= new_user_session_path %>">Свои статьи</a>
     <% end %>
     <% if current_user %>
-      <h2><%= "Привет, #{current_user.full_name}!" %></h2>
       <%#= image_tag(current_user.avatar_url) %>
       <%= link_to "Изменить аккаунт", edit_user_registration_path %>
-      <%= button_to "Выйти", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+      <div class="user-greeting">
+        <h2>Привет, <%= current_user.full_name %>!</h2>
+        <p>Рады видеть тебя снова!</p>
+      </div>
     <% else %>
       <%= link_to "Войти", new_user_session_path %>
       <%= link_to "Создать аккаунт", new_user_registration_path %>
@@ -280,12 +413,106 @@
 
   <section class="news-feed">
     <h2>Последние новости в мире литературы</h2>
-    <div style="max-height: 200px"> <ul>
+    <div> <ul>
       <% @rss.items.each_with_index do |item, index| %>
         <li><%= link_to item.title, item.link %></li>
         <% break if index >= 5 %>
       <% end %>
     </ul>
     </div>
+    <div class="news-categories">
+      <button class="category-btn" data-category="all">Все</button>
+      <button class="category-btn" data-category="classic">Классика</button>
+      <button class="category-btn" data-category="modern">Современная проза</button>
+      <button class="category-btn" data-category="sf">Научная фантастика</button>
+    </div>
+    <div class="news-list">
+      <article class="news">
+        <a href="https://www.bbc.com/news/entertainment-arts-59531506">
+          <h3>Новое издание "Улисса" Джеймса Джойса выходит в свет</h3>
+        </a>
+        <p>Первое издание модернистского романа с предисловием Салмана Рушди.</p>
+        <small>BBC, 15 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.theguardian.com/books/2023/mar/01/hannah-kent-wins-2023-miles-franklin-literary-award">
+          <h3>Ханна Кент получает премию Майлза Франклина за 2023 год</h3>
+        </a>
+        <p>Австралийская писательница была удостоена высшей литературной награды страны за свой роман "Одинокие сердца".</p>
+        <small>The Guardian, 1 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.theverge.com/2023/3/14/23530696/neuromancer-william-gibson-ai-generated-cover-art">
+          <h3>Искусственный интеллект создал обложку для нового издания "Нейроманта" Уильяма Гибсона</h3>
+        </a>
+        <p>Знаменитый научно-фантастический роман получил футуристичный облик.</p>
+        <small>The Verge, 14 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.nytimes.com/2023/03/07/books/review-adrienne-brooks-what-would-the-titans-say.html">
+          <h3>Эдриен Брукс исследует расу, искусство и пророчество в "Что сказали бы титаны"</h3>
+        </a>
+        <p>В своем дебютном романе Брукс создает яркий и провокационный портрет общества, которое борется с собственным прошлым и настоящим.</p>
+        <small>The New York Times, 7 марта 2023 г.</small>
+      </article>
+    </div>
   </section>
 </div>
+
+
+<section class="about">
+  <div class="about-header">
+    <h2>О нас</h2>
+    <p>Мы создаем пространство для обмена знаниями и идеями.</p>
+  </div>
+  <div class="about-mission">
+    <h3>Наша миссия</h3>
+    <p>Наша цель — предоставить платформу для публикации качественных статей и объединить людей, интересующихся различными темами.</p>
+  </div>
+  <div class="about-values">
+    <h3>Наши ценности</h3>
+    <ul>
+      <li><strong>Качество контента</strong>: Мы тщательно отбираем материалы.</li>
+      <li><strong>Открытость</strong>: Мы стремимся к созданию открытого сообщества.</li>
+      <li><strong>Разнообразие тем</strong>: У нас вы найдете статьи на любой вкус.</li>
+    </ul>
+  </div>
+  <div class="about-team">
+    <h3>Наша команда</h3>
+    <p>Мы — команда увлеченных людей, объединенных общей целью.</p>
+  </div>
+  </section>
+
+<section class="reviews">
+  <h2>Отзывы</h2>
+  <div class="review">
+    <p>"Отличный сайт! надеюсь, его создатели получат зачёт по Ruby."</p>
+    <p>- Иван Иванов</p>
+  </div>
+  <div class="review">
+    <p>"Много интересных статей на любые темы."</p>
+    <p>- Мария Петрова</p>
+  </div>
+  <div class="review">
+    <p>"Крайне полезный сайт для времяпровождения в маршрутке или в очереди в поликлинику."</p>
+    <p>- Сергей Сидоров</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2024 Все права защищены. Создано с любовью.</p>
+    <nav>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Политика конфиденциальности</a></li>
+      </ul>
+    </nav>
+    <div class="social-media">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>

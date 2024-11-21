@@ -83,6 +83,26 @@
         background-color: #5a6268;
     }
 
+    .btn-logout {
+        background-color: #dc3545; /* Красный цвет */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-logout:hover {
+        background-color: #c82333;
+    }
+
+    .logout-icon {
+        /* Стиль для иконки, например, используя Font Awesome */
+        margin-right: 5px;
+    }
+
 </style>
 
 <div class="container">
@@ -140,5 +160,9 @@
                   class: "btn btn-danger" %>
   </div>
 
-  <%= link_to "Назад", :back, class: "btn btn-secondary" %>
-</div>
+  <div class="logout-button">
+    <%= button_to "Выйти из аккаунта", destroy_user_session_path, data: {turbo: "false"}, method: :delete, class: "btn btn-logout" %>
+  </div>
+
+
+<%= link_to "Назад", :back, class: "btn btn-secondary" %>
