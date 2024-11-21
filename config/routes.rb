@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :articles
+  resources :articles do
+    collection do
+      get :my_articles
+    end
+  end
   root "articles#index"
   # get 'articles/index' => 'articles#index'
   # get 'articles/show' => 'articles#show'
@@ -7,7 +11,7 @@ Rails.application.routes.draw do
   # get 'articles/create' => 'articles#create'
   # get 'articles/edit' => 'articles#edit'
   # get 'articles/update' => 'articles#update'
-  get 'articles/my_articles' => "articles#my_articles", as: "my_articles"
+  get 'articles/my_articles' => "articles#my_articles"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -21,4 +25,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+
 end

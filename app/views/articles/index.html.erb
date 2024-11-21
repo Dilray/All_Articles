@@ -160,7 +160,7 @@
     <a href="#">Поиск</a>
     <a href="#">Новые статьи</a>
     <% if current_user %>
-      <a href="articles/my_articles">Свои статьи</a>
+      <%= link_to "Мои статьи", my_articles_articles_path %>
     <% else %>
       <a href="<%= new_user_session_path %>">Свои статьи</a>
     <% end %>
@@ -223,8 +223,10 @@
 <!--      <td><%#= article.content %></td>-->
       <% if current_user %>
       <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+        <% if current_user.full_name == article.author %>
       <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
-      <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td>  <!-- "вы уверены?" пока не работает хз почему -->
+          <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td> <!-- "вы уверены?" пока не работает хз почему -->
+          <% end %>
       <% else %>
         <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
       <% end %>

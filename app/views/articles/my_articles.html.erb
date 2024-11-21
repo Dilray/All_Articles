@@ -1,12 +1,74 @@
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .article-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .read-more-link {
+        text-decoration: none;
+        color: #337ab7;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
+    .btn-primary {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .buttons-container {
+        display: flex;
+        /* Изменение: Удаляем justify-content */
+        margin-top: 10px;
+    }
+
+    .create-new-article-button {
+        /* Изменение: Удаляем margin-left: auto */
+    }
+</style>
+
 <h1>Мои статьи</h1>
 
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
       <li>
-        <h2><%= link_to article.title, article_path(article) %></h2>
+        <h2><%= link_to article.title, article_path(article), class: "article-title" %></h2>
         <p><%= truncate(article.content, length: 100) %></p>
-        <p><%= link_to 'Читать далее', article_path(article) %></p>
+        <p><%= link_to 'Читать далее', article_path(article), class: "read-more-link" %></p>
       </li>
     <% end %>
   </ul>
@@ -14,4 +76,7 @@
   <p>Вы пока ничего не публиковали...</p>
 <% end %>
 
-<%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary' %>
+<div class="buttons-container">
+  <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
+  <%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary create-new-article-button' %>
+</div>
