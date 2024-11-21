@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   def index
     # @articles = Article.where(current_user: :uid)
     @articles = Article.all
+    @rss = RSS::Parser.parse("https://www.theguardian.com/books/booksblog/rss")
   end
 
   def show

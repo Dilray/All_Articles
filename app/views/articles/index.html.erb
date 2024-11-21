@@ -152,6 +152,69 @@
         background-color: #f0f0f0; /* Цвет фона при наведении */
     }
 
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .articles {
+        /* Стиль для левой колонки */
+    }
+
+    .news-feed {
+        /* Стиль для правой колонки */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .articles,
+    .news-feed {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f5f5f5; /* Цвет фона для колонок */
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .news-feed {
+        /* Стиль для правой колонки */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        max-height: 200px; /* Установите желаемую максимальную высоту */
+        overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    }
+
+    .article-section-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .btn-primary {
+        background-color: #4CAF50; /* Салатовый */
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #3C763D; /* Темно-зеленый */
+    }
+
 </style>
 
 <div class="navbar">
@@ -175,36 +238,14 @@
     <% end %>
   </div>
 </div>
-
-<!-- Основной контейнер для статей -->
-<div class="articles">
-  <div class="article-header">
-    <!--<div class="article-title">Title</div>
-    <div class="article-body">Body</div>
-    <div class="article-actions"> --></div>
-  </div>
-
-<!--<div class="article-list">
-     <%#= @articles.each do |article| %>
-      <div class="article-item">
-        <div class="article-title"><%#= article.title %></div>
-        <div class="article-body"><%#= article.body %></div>
-        <div class="article-actions">
-          <form action="articles/show" method="get" style="display:inline;">
-            <button type="submit">Show</button>
-          </form>
-          <form action="articles/edit" method="get" style="display:inline;">
-            <button type="submit">Edit</button>
-          </form>
-          <%#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
-        </div>
-      </div>
-    <%# end %>
-  </div>
-</div> -->
-
+<% if current_user %>
 <%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
-
+  <% else %>
+  <%= button_to 'Новая статья', new_user_session_path, method: :get, class: 'btn btn-primary' %>
+<% end %>
+<div class="container">
+  <section class="articles">
+    <h2 class="article-section-title">Недавние статьи</h2>
 <table>
   <thead>
   <tr>
@@ -234,3 +275,17 @@
   <% end %>
   </tbody>
 </table>
+</section>
+
+
+  <section class="news-feed">
+    <h2>Последние новости в мире литературы</h2>
+    <div style="max-height: 200px"> <ul>
+      <% @rss.items.each_with_index do |item, index| %>
+        <li><%= link_to item.title, item.link %></li>
+        <% break if index >= 5 %>
+      <% end %>
+    </ul>
+    </div>
+  </section>
+</div>
