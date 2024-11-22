@@ -1,3 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Article</title>
+  <style>
+      body {
+          font-family: sans-serif;
+      }
+
+      h1 {
+          font-size: 24px;
+          margin-bottom: 10px;
+      }
+
+      #error_explanation {
+          background-color: #f0f0f0;
+          border: 1px solid #e0e0e0;
+          padding: 10px;
+          margin-bottom: 10px;
+      }
+
+      #error_explanation h2 {
+          font-size: 18px;
+          margin-bottom: 5px;
+      }
+
+      #error_explanation ul {
+          list-style-type: none;
+          padding-left: 0;
+      }
+
+      .field {
+          margin-bottom: 10px;
+      }
+
+      .field label {
+          font-weight: bold;
+      }
+
+      .field input,
+      .field textarea {
+          width: 100%;
+          padding: 5px;
+          border: 1px solid #ccc;
+      }
+
+      .actions {
+          text-align: right;
+      }
+
+      .actions input {
+          margin-right: 10px;
+      }
+  </style>
+</head>
+<body>
 <h1>Edit Article</h1>
 
 <%= form_with(model: @article, local: true) do |form| %>
@@ -19,14 +75,20 @@
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Update Article" %>
   </div>
 <% end %>
 
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', '/' %>
+<%= link_to 'Back', articles_path %>
+</body>
+</html>

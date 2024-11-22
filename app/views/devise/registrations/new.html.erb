@@ -1,29 +1,135 @@
-<h2>Sign up</h2>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    h2 {
+        text-align: center;
+        color: #333;
+    }
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    .field {
+        margin-bottom: 15px;
+    }
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    .label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+    }
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
 
-<%= render "devise/shared/links" %>
+    .input-field:focus {
+        border-color: #007BFF;
+        outline: none;
+    }
+
+    .actions {
+        text-align: center;
+    }
+
+    .submit-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+    em {
+        font-size: 0.9em;
+        color: #999;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        color: white;
+        margin-top: 10px; /* Отступ сверху для кнопки "Назад" */
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Подключение CSS -->
+</head>
+<body>
+<div class="container">
+  <h2>Регистрация нового аккаунта</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label "Никнейм" %><br />
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: "input-field" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Почта" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Пароль" %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> символов минимум)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "input-field" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Подтверждение пароля" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Зарегистрироваться", class: "submit-button" %>
+      <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!-- <link rel="stylesheet" href="application.css"> -->
+
 <%#= image_tag("books.jpg") %>
 <style>
 
@@ -91,34 +91,259 @@
         justify-content: center;
     }*/
 
-    .destroy-button {
-        background-color: red;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 5px;
-        cursor: pointer;
-    }
-
-    .destroy-button:hover {
-        background-color: darkred;
-    }
-
-    /* Кнопка добавления статей */
-    .add-button {
-        color: white;
-        background-color: red;
+    .btn {
         padding: 10px 15px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        transition: background-color 0.3s;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
     }
 
-    .add-button:hover {
-        background-color: darkred;
+    .btn-show {
+        background-color: #8b4513; /* Коричневый */
+        color: white;
+    }
+
+    .btn-edit {
+        background-color: #8b4513; /* Коричневый */
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: #f8173e; /* Красный */
+        color: white;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-show:hover {
+        background-color: #45a049; /* Темно-зеленый при наведении */
+    }
+
+    .btn-edit:hover {
+        background-color: #1e88e5; /* Темно-синий при наведении */
+    }
+
+    .btn-delete:hover {
+        background-color: #d32f2f; /* Темно-красный при наведении */
+    }
+
+    td {
+        padding: 10px; /* Отступы внутри ячеек */
+        text-align: left; /* Выравнивание текста по левому краю */
+    }
+
+    .article-title {
+        font-weight: bold; /* Жирный шрифт для заголовка статьи */
+        font-size: 18px; /* Размер шрифта для заголовка */
+        color: #333; /* Цвет текста */
+    }
+
+    .article-author {
+        font-style: italic; /* Курсив для имени автора */
+        color: #555; /* Цвет текста для автора */
+    }
+
+    /* Добавление эффекта при наведении на строку таблицы */
+    tr:hover td {
+        background-color: #f0f0f0; /* Цвет фона при наведении */
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .articles {
+        /* Стиль для левой колонки */
+    }
+
+    .news-feed {
+        /* Стиль для правой колонки */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .articles,
+    .news-feed {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f5f5f5; /* Цвет фона для колонок */
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .news-feed {
+        /* Стиль для правой колонки */
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        /*max-height: 200px; !* Установите желаемую максимальную высоту *!*/
+        /*overflow-y: auto; !* Добавляем вертикальную прокрутку *!*/
+    }
+
+    .article-section-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .btn-primary {
+        background-color: #4CAF50; /* Салатовый */
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #3C763D; /* Темно-зеленый */
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .about {
+        text-align: center;
+        padding: 50px;
+        background-color: #f5f5f5;
+    }
+
+    .about p {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .review {
+        background-color: #e0e0e0;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .review p:first-child {
+        font-style: italic;
+    }
+
+    .reviews {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .review {
+        width: 300px;
+        margin: 20px;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Анимация появления отзывов */
+    .review {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .reviews:hover .review {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .about h3 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about {
+        background-color: #50463d;
+        text-align: center;
+        padding: 50px;
+        /*overflow-y: auto;*/
+        max-height: 400px;
+        color: white;
+    }
+
+    .about-header {
+        margin-bottom: 30px;
+        /*overflow-y: auto;*/
+    }
+
+    .about-mission, .about-values, .about-team {
+        margin-bottom: 30px;
+    }
+
+    .about h3 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about ul {
+        list-style: disc;
+        padding-left: 20px;
+    }
+
+    .news-categories {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .category-btn {
+        /* Стиль для кнопок категорий */
+    }
+
+    .news-list {
+        /* Стиль для списка новостей */
+    }
+
+    .user-greeting {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .user-greeting h2 {
+        font-family: 'Montserrat', sans-serif; /* Замените на выбранный шрифт */
+        font-size: 24px;
+        color: #333;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
 </style>
@@ -128,48 +353,166 @@
   <div class="navbar-links">
     <a href="#">Поиск</a>
     <a href="#">Новые статьи</a>
-    <a href="#">Свои статьи</a>
-
     <% if current_user %>
-      <h2><%= current_user.email %></h2>
-      <%= image_tag(current_user.avatar_url) %>
+      <%= link_to "Мои статьи", my_articles_articles_path %>
+    <% else %>
+      <a href="<%= new_user_session_path %>">Свои статьи</a>
+    <% end %>
+    <% if current_user %>
+      <%#= image_tag(current_user.avatar_url) %>
       <%= link_to "Изменить аккаунт", edit_user_registration_path %>
-      <%= button_to "Выйти", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+      <div class="user-greeting">
+        <h2>Привет, <%= current_user.full_name %>!</h2>
+        <p>Рады видеть тебя снова!</p>
+      </div>
     <% else %>
       <%= link_to "Войти", new_user_session_path %>
       <%= link_to "Создать аккаунт", new_user_registration_path %>
     <% end %>
   </div>
 </div>
+<% if current_user %>
+<%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
+  <% else %>
+  <%= button_to 'Новая статья', new_user_session_path, method: :get, class: 'btn btn-primary' %>
+<% end %>
+<div class="container">
+  <section class="articles">
+    <h2 class="article-section-title">Недавние статьи</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Автор</th>
+<!--    <th>Content</th>-->
+    <th colspan="2"></th>
+  </tr>
+  </thead>
 
-<!-- Основной контейнер для статей -->
-<div class="articles">
-  <div class="article-header">
-    <!--<div class="article-title">Title</div>
-    <div class="article-body">Body</div>
-    <div class="article-actions"> --></div>
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td class="article-title"><%= article.title %></td>
+      <td class="article-author"><%= article.author %></td>
+<!--      <td><%#= article.content %></td>-->
+      <% if current_user %>
+      <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+        <% if current_user.full_name == article.author %>
+      <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
+          <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td> <!-- "вы уверены?" пока не работает хз почему -->
+          <% end %>
+      <% else %>
+        <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</section>
+
+
+  <section class="news-feed">
+    <h2>Последние новости в мире литературы</h2>
+    <div> <ul>
+      <% @rss.items.each_with_index do |item, index| %>
+        <li><%= link_to item.title, item.link %></li>
+        <% break if index >= 5 %>
+      <% end %>
+    </ul>
+    </div>
+    <div class="news-categories">
+      <button class="category-btn" data-category="all">Все</button>
+      <button class="category-btn" data-category="classic">Классика</button>
+      <button class="category-btn" data-category="modern">Современная проза</button>
+      <button class="category-btn" data-category="sf">Научная фантастика</button>
+    </div>
+    <div class="news-list">
+      <article class="news">
+        <a href="https://www.bbc.com/news/entertainment-arts-59531506">
+          <h3>Новое издание "Улисса" Джеймса Джойса выходит в свет</h3>
+        </a>
+        <p>Первое издание модернистского романа с предисловием Салмана Рушди.</p>
+        <small>BBC, 15 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.theguardian.com/books/2023/mar/01/hannah-kent-wins-2023-miles-franklin-literary-award">
+          <h3>Ханна Кент получает премию Майлза Франклина за 2023 год</h3>
+        </a>
+        <p>Австралийская писательница была удостоена высшей литературной награды страны за свой роман "Одинокие сердца".</p>
+        <small>The Guardian, 1 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.theverge.com/2023/3/14/23530696/neuromancer-william-gibson-ai-generated-cover-art">
+          <h3>Искусственный интеллект создал обложку для нового издания "Нейроманта" Уильяма Гибсона</h3>
+        </a>
+        <p>Знаменитый научно-фантастический роман получил футуристичный облик.</p>
+        <small>The Verge, 14 марта 2023 г.</small>
+      </article>
+      <article class="news">
+        <a href="https://www.nytimes.com/2023/03/07/books/review-adrienne-brooks-what-would-the-titans-say.html">
+          <h3>Эдриен Брукс исследует расу, искусство и пророчество в "Что сказали бы титаны"</h3>
+        </a>
+        <p>В своем дебютном романе Брукс создает яркий и провокационный портрет общества, которое борется с собственным прошлым и настоящим.</p>
+        <small>The New York Times, 7 марта 2023 г.</small>
+      </article>
+    </div>
+  </section>
+</div>
+
+
+<section class="about">
+  <div class="about-header">
+    <h2>О нас</h2>
+    <p>Мы создаем пространство для обмена знаниями и идеями.</p>
   </div>
-
-<!--<div class="article-list">
-     <%#= @articles.each do |article| %>
-      <div class="article-item">
-        <div class="article-title"><%#= article.title %></div>
-        <div class="article-body"><%#= article.body %></div>
-        <div class="article-actions">
-          <form action="articles/show" method="get" style="display:inline;">
-            <button type="submit">Show</button>
-          </form>
-          <form action="articles/edit" method="get" style="display:inline;">
-            <button type="submit">Edit</button>
-          </form>
-          <%#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
-        </div>
-      </div>
-    <%# end %>
+  <div class="about-mission">
+    <h3>Наша миссия</h3>
+    <p>Наша цель — предоставить платформу для публикации качественных статей и объединить людей, интересующихся различными темами.</p>
   </div>
-</div> -->
+  <div class="about-values">
+    <h3>Наши ценности</h3>
+    <ul>
+      <li><strong>Качество контента</strong>: Мы тщательно отбираем материалы.</li>
+      <li><strong>Открытость</strong>: Мы стремимся к созданию открытого сообщества.</li>
+      <li><strong>Разнообразие тем</strong>: У нас вы найдете статьи на любой вкус.</li>
+    </ul>
+  </div>
+  <div class="about-team">
+    <h3>Наша команда</h3>
+    <p>Мы — команда увлеченных людей, объединенных общей целью.</p>
+  </div>
+  </section>
 
-<!-- Кнопка для добавления новой статьи -->
-<form action="articles/new" method="get">
-  <button type="submit" class="add-button">Добавить статью</button>
-</form>
+<section class="reviews">
+  <h2>Отзывы</h2>
+  <div class="review">
+    <p>"Отличный сайт! надеюсь, его создатели получат зачёт по Ruby."</p>
+    <p>- Иван Иванов</p>
+  </div>
+  <div class="review">
+    <p>"Много интересных статей на любые темы."</p>
+    <p>- Мария Петрова</p>
+  </div>
+  <div class="review">
+    <p>"Крайне полезный сайт для времяпровождения в маршрутке или в очереди в поликлинику."</p>
+    <p>- Сергей Сидоров</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2024 Все права защищены. Создано с любовью.</p>
+    <nav>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Политика конфиденциальности</a></li>
+      </ul>
+    </nav>
+    <div class="social-media">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>

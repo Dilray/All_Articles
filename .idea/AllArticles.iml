@@ -129,6 +129,7 @@
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.5.11, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.1.1, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.3.9, ruby-3.3.6-p108) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rss (v0.3.1, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.68.0, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.36.1, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-minitest (v0.36.0, ruby-3.3.6-p108) [gem]" level="application" />

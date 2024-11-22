@@ -1,89 +1,119 @@
 <style>
-    body {
-        background-color: #eaceb6;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
     }
 
-    /*Вход*/
-    .header-title {
-        font-family: Arial, sans-serif;
+    h2 {
         text-align: center;
-        margin-top: 40px;
+        color: #333;
+        margin-bottom: 20px;
     }
 
-    .rectangle-login {
-        width: 500px;
-        height: 500px;
-        background-color: #e1e1e4;
-        margin: 20px;
-
+    .field {
+        margin-bottom: 15px;
     }
 
-    .form-inputs
-    {
-        text-align: center;
+    .field label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
 
-    input
-    {
+    .form-control {
         width: 100%;
-        max-width: 300px;
-        padding: 15px;
-        border: 2px solid #007BFF;
-        border-radius: 10px;
-        font-size: 16px;
-        outline: none;
-        transition: border-color 0.3s ease;
-        margin-bottom: 16px;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
     }
 
-    input:focus {
-        border-color: #0056b3;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, .5);
     }
 
-    .checkbox-wrapper {
-        margin-top: 16px;
-        width: 10%;
-        font-size: 16px;
+    .remember-me {
+        display: flex;
+        align-items: center;
+    }
+
+    .actions {
+        text-align: center;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: none;
         cursor: pointer;
-        margin-right: 10px;
-
     }
 
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        color: white;
+        margin-top: 10px; /* Отступ сверху для кнопки "Назад" */
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
+    .links {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .links a {
+        color: #007bff;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
 </style>
 
-<div class="rectangle-login">
-  <h1 class="header-title">Вход</h1>
+<div class="login-container">
+  <h2>Вход в аккаунт</h2>
 
-  <div class = "form-inputs"> <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
-
-  </div>
-  <div class="field">
-    <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: "Пароль" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-form' }) do |f| %>
     <div class="field">
-      <div class="checkbox-wrapper">
-        <%= f.check_box :remember_me, class: "remember-me-checkbox" %>
-        <%= f.label :remember_me, class: "remember-me-label" %>
+      <%= f.label "Почта" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Пароль" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field remember-me">
+        <%= f.check_box :remember_me %>
+        <%= f.label "Запомнить меня" %>
       </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Войти в аккаунт", class: "btn btn-primary" %>
+      <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Войти" %>
+  <div class="links">
+    <%= render "devise/shared/links" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
-</div>
 </div>

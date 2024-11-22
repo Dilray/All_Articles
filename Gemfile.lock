@@ -284,6 +284,8 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.3.9)
+    rss (0.3.1)
+      rexml
     rubocop (1.68.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -401,7 +403,9 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
+  rss
   rubocop-rails-omakase
+  securerandom
   selenium-webdriver
   solid_cable
   solid_cache

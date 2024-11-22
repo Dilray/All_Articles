@@ -10,9 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
 
   # GET /resource/edit
   # def edit
@@ -28,6 +25,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       resource.update_with_password(params)
     end
+  end
+
+  def after_sign_up_path_for(resource)
+    root_path
   end
 
   # PUT /resource

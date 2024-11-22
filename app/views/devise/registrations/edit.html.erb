@@ -1,43 +1,168 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    h2 {
+        text-align: center;
+        color: #333;
+    }
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, .5);
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .btn-logout {
+        background-color: #dc3545; /* Красный цвет */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-logout:hover {
+        background-color: #c82333;
+    }
+
+    .logout-icon {
+        /* Стиль для иконки, например, используя Font Awesome */
+        margin-right: 5px;
+    }
+
+</style>
+
+<div class="container">
+<!--  <h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
+  <h2>Изменить аккаунт</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label "Почта" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="alert alert-warning">
+        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label "Новый пароль" %>
+      <small>(оставьте поле пустым, если вы не хотите его менять)</small>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <% if @minimum_password_length %>
+        <div class="text-muted">
+          <em><%= @minimum_password_length %> символов минимум</em>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Введите новый пароль ещё раз" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Текущий пароль" %>
+      <small>(нам нужен ваш текущий пароль для подтверждения ваших изменений)</small>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Изменить", class: "btn btn-primary" %>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <h3>Удалить мой аккаунт</h3>
+
+  <div class="alert alert-danger">
+    Недовольны?
+    <%= button_to "Удалить мой аккаунт", registration_path(resource_name),
+                  data: { confirm: "Вы уверены?", turbo_confirm: "Вы уверены?" },
+                  method: :delete,
+                  class: "btn btn-danger" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="logout-button">
+    <%= button_to "Выйти из аккаунта", destroy_user_session_path, data: {turbo: "false"}, method: :delete, class: "btn btn-logout" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<%= link_to "Назад", :back, class: "btn btn-secondary" %>
