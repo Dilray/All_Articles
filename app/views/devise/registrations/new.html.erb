@@ -1,7 +1,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: #eaceb6;
         margin: 0;
         padding: 0;
     }
@@ -58,7 +58,7 @@
     }
 
     .submit-button:hover {
-        background-color: #0056b3;
+        background-color: #5a6268;;
     }
 
     em {
@@ -74,9 +74,13 @@
     }
 
     .btn-secondary {
-        background-color: #6c757d; /* Цвет для кнопки "Назад" */
+        background-color: #007BFF; /* Цвет для кнопки "Назад" */
         color: white;
-        margin-top: 10px; /* Отступ сверху для кнопки "Назад" */
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
 
     .btn-secondary:hover {
@@ -95,32 +99,36 @@
 </head>
 <body>
 <div class="container">
-  <h2>Регистрация нового аккаунта</h2>
+  <h2>Регистрация</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label "Никнейм" %><br />
-      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: "input-field" %>
+      <%#= f.label "Никнейм" %><br />
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: "input-field", placeholder: "Придумайте имя аккаунта" %>
     </div>
 
     <div class="field">
-      <%= f.label "Почта" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field" %>
+      <%#= f.label "Почта" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: "Введите Email" %>
     </div>
 
     <div class="field">
-      <%= f.label "Пароль" %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> символов минимум)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "input-field" %>
+      <%#= f.label "Пароль" %>
+      <%# if @minimum_password_length %>
+        <!-- <em>(<%= @minimum_password_length %> символов минимум)</em> -->
+      <%# end %><br />
+      <%= f.password_field :password,
+                           autocomplete: "new-password",
+                           class: "input-field",
+                           placeholder: @minimum_password_length ? "Придумайте пароль (минимум #{@minimum_password_length} символов)" : "Придумайте пароль" %>
+
     </div>
 
     <div class="field">
-      <%= f.label "Подтверждение пароля" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field" %>
+      <%#= f.label "Подтверждение пароля" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: "Введите пароль еще раз" %>
     </div>
 
     <div class="actions">
