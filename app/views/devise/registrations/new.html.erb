@@ -86,7 +86,18 @@
     .btn-secondary:hover {
         background-color: #5a6268; /* Цвет при наведении */
     }
+    .links {
+        text-align: center;
+        margin-top: 20px;
+    }
 
+    .links a {
+        color: #007bff;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
 </style>
 
 <!DOCTYPE html>
@@ -137,7 +148,9 @@
     </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="links">
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
 </body>
 </html>
