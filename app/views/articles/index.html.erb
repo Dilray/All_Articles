@@ -139,6 +139,7 @@
     .article-title {
         font-weight: bold; /* Жирный шрифт для заголовка статьи */
         font-size: 18px; /* Размер шрифта для заголовка */
+        font-family: Arial, sans-serif;
         color: #333; /* Цвет текста */
     }
 
@@ -203,6 +204,7 @@
         margin-bottom: 20px;
         font-size: 24px;
         font-weight: bold;
+        font-family: Arial, sans-serif;
         color: #333;
     }
 
@@ -216,14 +218,16 @@
     }
 
     footer {
-        background-color: #333;
+        background-color: #50463d;
         color: #fff;
         padding: 20px;
         text-align: center;
+        font-family: Arial, sans-serif;
     }
 
     .about {
         text-align: center;
+        font-family: Arial, sans-serif;
         padding: 50px;
         background-color: #f5f5f5;
     }
@@ -261,6 +265,7 @@
 
     /* Анимация появления отзывов */
     .review {
+        margin-bottom: 15px;
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.5s, transform 0.5s;
@@ -280,6 +285,7 @@
     .about {
         background-color: #50463d;
         text-align: center;
+        font-family: Arial, sans-serif;
         padding: 50px;
         /*overflow-y: auto;*/
         max-height: 400px;
@@ -296,7 +302,7 @@
     }
 
     .about h3 {
-        color: #333;
+        color: #b19898;
         font-weight: bold;
         margin-bottom: 15px;
     }
@@ -325,6 +331,7 @@
         padding: 20px;
         border-radius: 10px;
         text-align: center;
+        font-family: Arial, sans-serif;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         animation: fadeIn 0.5s ease-in-out;
     }
@@ -472,9 +479,9 @@
   <div class="about-values">
     <h3>Наши ценности</h3>
     <ul>
-      <li><strong>Качество контента</strong>: Мы тщательно отбираем материалы.</li>
-      <li><strong>Открытость</strong>: Мы стремимся к созданию открытого сообщества.</li>
-      <li><strong>Разнообразие тем</strong>: У нас вы найдете статьи на любой вкус.</li>
+      <p><strong>Качество контента</strong>: Мы тщательно отбираем материалы.</p>
+      <p><strong>Открытость</strong>: Мы стремимся к созданию открытого сообщества.</p>
+      <p><strong>Разнообразие тем</strong>: У нас вы найдете статьи на любой вкус.</p>
     </ul>
   </div>
   <div class="about-team">
@@ -484,7 +491,7 @@
   </section>
 
 <section class="reviews">
-  <h2>Отзывы</h2>
+  <h2><font face="Arial">Отзывы: </font></h2>
   <div class="review">
     <p>"Отличный сайт! надеюсь, его создатели получат зачёт по Ruby."</p>
     <p>- Иван Иванов</p>
@@ -504,15 +511,15 @@
     <p>&copy; 2024 Все права защищены. Создано с любовью.</p>
     <nav>
       <ul>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Контакты</a></li>
-        <li><a href="#">Политика конфиденциальности</a></li>
+        <!--<p><a href="#" style="color: white;">О нас</a></p>-->
+        <p><a href="#" style="color: white;">Обратная связь</a></p>
+        <p><a href="#" style="color: white;">Политика конфиденциальности</a></p>
       </ul>
     </nav>
-    <div class="social-media">
+    <!--<div class="social-media">
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-twitter"></i></a>
-    </div>
+    </div>-->
   </div>
 </footer>
