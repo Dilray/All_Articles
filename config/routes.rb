@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     collection do
       get :my_articles
     end
+    member do
+      post 'rate'
+    end
   end
   root "articles#index"
   # get 'articles/index' => 'articles#index'
