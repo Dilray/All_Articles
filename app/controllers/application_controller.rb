@@ -9,4 +9,16 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name])
   end
+
+  def rate
+    @article = Article.find(params[:id])
+    @rating = @article.rating.find_or_initialize_by(user: current_user)
+    @rating.score = params[:score]
+
+    if @rating.save
+      render json: { average_rating: @article.average_rating }
+    else
+      render json: { error: 'Unable to save rating' }, status: :unprocessable_entity
+    end
+  end
 end
