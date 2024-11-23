@@ -419,14 +419,20 @@
 
 
   <section class="news-feed">
-    <h2>Последние новости в мире литературы</h2>
-    <div> <ul>
+    <h2>Новости в мире</h2>
+    <div class="news-list">
       <% @rss.items.each_with_index do |item, index| %>
-        <li><%= link_to item.title, item.link %></li>
-        <% break if index >= 5 %>
+        <% next if index >= 5 %>
+        <article class="news">
+          <a href="<%= item.link %>">
+            <h3><%= item.title %></h3>
+          </a>
+          <p><%= item.description.truncate(100) %></p>
+          <small><%= item.pubDate.strftime('%B %d, %Y') %></small>
+        </article>
       <% end %>
-    </ul>
     </div>
+    <h2>Последние новости в мире литературы (англ.)</h2>
     <div class="news-categories">
       <button class="category-btn" data-category="all">Все</button>
       <button class="category-btn" data-category="classic">Классика</button>
@@ -434,34 +440,16 @@
       <button class="category-btn" data-category="sf">Научная фантастика</button>
     </div>
     <div class="news-list">
-      <article class="news">
-        <a href="https://www.bbc.com/news/entertainment-arts-59531506">
-          <h3>Новое издание "Улисса" Джеймса Джойса выходит в свет</h3>
-        </a>
-        <p>Первое издание модернистского романа с предисловием Салмана Рушди.</p>
-        <small>BBC, 15 марта 2023 г.</small>
-      </article>
-      <article class="news">
-        <a href="https://www.theguardian.com/books/2023/mar/01/hannah-kent-wins-2023-miles-franklin-literary-award">
-          <h3>Ханна Кент получает премию Майлза Франклина за 2023 год</h3>
-        </a>
-        <p>Австралийская писательница была удостоена высшей литературной награды страны за свой роман "Одинокие сердца".</p>
-        <small>The Guardian, 1 марта 2023 г.</small>
-      </article>
-      <article class="news">
-        <a href="https://www.theverge.com/2023/3/14/23530696/neuromancer-william-gibson-ai-generated-cover-art">
-          <h3>Искусственный интеллект создал обложку для нового издания "Нейроманта" Уильяма Гибсона</h3>
-        </a>
-        <p>Знаменитый научно-фантастический роман получил футуристичный облик.</p>
-        <small>The Verge, 14 марта 2023 г.</small>
-      </article>
-      <article class="news">
-        <a href="https://www.nytimes.com/2023/03/07/books/review-adrienne-brooks-what-would-the-titans-say.html">
-          <h3>Эдриен Брукс исследует расу, искусство и пророчество в "Что сказали бы титаны"</h3>
-        </a>
-        <p>В своем дебютном романе Брукс создает яркий и провокационный портрет общества, которое борется с собственным прошлым и настоящим.</p>
-        <small>The New York Times, 7 марта 2023 г.</small>
-      </article>
+      <% @rsss.items.each_with_index do |item, index| %>
+        <% next if index >= 5 %>
+        <article class="news">
+          <a href="<%= item.link %>">
+            <h3><%= item.title %></h3>
+          </a>
+          <p><%= item.description.truncate(100) %></p>
+          <small><%= item.pubDate.strftime('%B %d, %Y') %></small>
+        </article>
+      <% end %>
     </div>
   </section>
 </div>
