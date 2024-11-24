@@ -358,7 +358,20 @@
 <div class="navbar">
   <h1 class="header-title">AllArticles</h1>
   <div class="navbar-links">
-    <a href="#">Поиск</a>
+
+    <%= form_with url: search_articles_path, method: :post, id: "search-form" do |form| %>
+      <%= form.search_field :title_search, onkeypress: "if(event.keyCode == 13) this.form.requestSubmit()", style:"Width: 100%;" %>
+    <% end %>
+    <button type="submit" form="search-form">Найти</button>
+<!--    <div id="search_results">-->
+<!--      Search Results-->
+<!--    </div>-->
+<!--    <div id="articles">-->
+      <%#  @articles.each do |article| %>
+      <%#= render article %>
+      <%# end %>
+<!--    </div>-->
+
     <a href="#">Новые статьи</a>
     <% if current_user %>
       <%= link_to "Мои статьи", my_articles_articles_path %>

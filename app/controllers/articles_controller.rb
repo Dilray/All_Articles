@@ -9,8 +9,21 @@ class ArticlesController < ApplicationController
     # @articles = Article.where(current_user: :uid)
     @articles = Article.all
     @rss = RSS::Parser.parse("https://lenta.ru/rss/news/world")
-
     @rsss = RSS::Parser.parse("https://www.theguardian.com/books/rss")
+  end
+
+  def search
+    if params[:title_search].present?
+      @articles = Article.where("title ILIKE ?", "%#{params[:title_search]}%")
+    else
+      @articles = Article.all
+    end
+
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #     render turbo_stream: turbo_stream.update("search_results", partial: "articles/search_results", locals: { articles: @articles })
+    #   end
+    # end
   end
 
   def show

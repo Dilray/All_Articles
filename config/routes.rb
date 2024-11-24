@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       get :my_articles
+      post :search
     end
   end
   root "articles#index"

@@ -1,0 +1,49 @@
+<style>
+    .search_results {
+        margin: 20px auto;
+        max-width: 800px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .search_results p {
+        text-align: center;
+        font-size: 18px;
+        color: #666;
+    }
+
+    .search_results ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .search_results li {
+        margin-bottom: 10px;
+    }
+
+    .search_results a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .search_results a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="search_results">
+
+  <% if @articles.empty? %>
+    <p> ничего не нашлось </p>
+  <% else %>
+    <ul>
+      <% @articles.each do |article| %>
+        <li><%= link_to article do %><%= article.title %><% end %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+</div>
