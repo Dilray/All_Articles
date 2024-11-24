@@ -18,10 +18,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_162523) do
     t.string "title", null: false
     t.string "author", null: false
     t.text "content", null: false
-    t.integer "rating", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.string "user_id", null: false
+    t.integer "score", null: false
   end
 
   create_table "users", primary_key: "email", id: { type: :string, limit: 255, default: "" }, force: :cascade do |t|
