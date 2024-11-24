@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       get :my_articles
       post :search
     end
+    member do
+      post 'rate'
+    end
   end
   root "articles#index"
   # get 'articles/index' => 'articles#index'

@@ -78,6 +78,25 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def rate
+    puts(logger.debug(current_user))
+
+    unless current_user
+      render json: { error: 'You are not authorized' }, status: :unauthorized
+      return
+    end
+
+    @article = Article.find(params[:id])
+    @rating = @article.ratings.find_or_create_by(user_id: current_user.full_name)
+    @rating.score = params[:score]
+
+    if @rating.save
+      redirect_to articles_path, notice: 'Rating was successfully created.'
+    else
+      render json: { error: 'Unable to save rating' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def article_params

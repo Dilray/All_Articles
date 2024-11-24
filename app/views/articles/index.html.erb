@@ -424,6 +424,28 @@
       <% else %>
         <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
       <% end %>
+      <td>
+        <!-- Модальное окно -->
+          <div class="modal-content"><%= 'Оцените статью' %>
+            <div class="rating-buttons">
+              <% (1..5).each do |i| %>
+                <%= button_to i, rate_article_path(article, score: i), method: :post, class: 'rating-button' %>
+              <% end %>
+            </div>
+          </div>
+      </td>
+        <!-- рЭйтинг -->
+      <td class="article-rating">
+        <% (1..5).each do |i| %>
+          <% if i <= article.average_rating.round %>
+            <span class="star filled" data-value="<%= i %>">★</span> 
+          <% else %>
+            <span class="star" data-value="<%= i %>">☆</span>
+          <% end %>
+        <% end %>
+        <div class="average-rating">Average Rating: <span id="average-rating-<%= article.id %>"><%= article.average_rating %></span></div>
+      </td>
+      <!-- рЭйтинг -->
     </tr>
   <% end %>
   </tbody>
