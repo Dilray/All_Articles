@@ -416,11 +416,13 @@
       </td>
         <!-- рЭйтинг -->
       <td class="article-rating">
-        <div class="stars" data-article-id="<%= article.id %>">
-          <% (1..5).each do |i| %>
+        <% (1..5).each do |i| %>
+          <% if i <= article.average_rating.round %>
+            <span class="star filled" data-value="<%= i %>">★</span> 
+          <% else %>
             <span class="star" data-value="<%= i %>">☆</span>
           <% end %>
-        </div>
+        <% end %>
         <div class="average-rating">Average Rating: <span id="average-rating-<%= article.id %>"><%= article.average_rating %></span></div>
       </td>
       <!-- рЭйтинг -->
