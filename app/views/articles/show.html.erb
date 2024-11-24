@@ -1,6 +1,35 @@
-<h1><%= @article.title %></h1>
+<style>
+    article {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 1rem;
+        background: #f5f5f5;
+    }
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        line-height: 1.5rem;
+    }
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    a:hover {
+        color: #666;
+    }
+</style>
 
-<p><%= @article.content %></p>
+<article>
+  <h1><%= @article.title %></h1>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', '/' %>
+  <p><%= @article.content %></p>
+
+  <% if current_user %>
+    <% if current_user.full_name == @article.author %>
+      <%= link_to 'Edit', edit_article_path(@article) %> |
+    <% end %>
+  <% end %>
+  <%= link_to 'Back', '/' %>
+</article>
