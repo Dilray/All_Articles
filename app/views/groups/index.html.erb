@@ -1,0 +1,60 @@
+<h1>Список групп</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Полное имя</th>
+    <th>Описание</th>
+    <th>Активна</th>
+    <th>Действия</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= group.full_name %></td>
+      <td><%= group.description %></td>
+<!--      <td><%#= group.active? ? 'Да' : 'Нет' %></td>-->
+      <td>
+        <%= link_to 'Редактировать', edit_group_path(group) %>
+        <%= link_to 'Удалить', group_path(group), method: :delete, data: { confirm: 'Вы уверены?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Создать новую группу</h2>
+
+<%= form_with(model: Group.new, local: true) do |form| %>
+  <%# if @group.errors.any? %>
+<!--    <div id="error_explanation">-->
+<!--      <h2><%#= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# @group.errors.full_messages.each do |message| %>
+<!--          <li><%#= message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+  <div class="field">
+    <%= form.label :full_name, "Полное имя группы" %>
+    <%= form.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Описание" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active, "Активна?" %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Создать группу" %>
+  </div>
+<% end %>

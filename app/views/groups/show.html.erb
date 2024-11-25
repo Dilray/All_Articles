@@ -1,0 +1,37 @@
+<%# app/views/groups/show.html.erb %>
+
+<h1><%= @group.name %></h1>
+
+<div class="group-details">
+  <p><strong>Описание:</strong></p>
+  <p><%= @group.description.present? ? @group.description : "Описание отсутствует." %></p>
+
+  <p><strong>Создано пользователем:</strong> <%= @group.full_name %></p>
+  <p><strong>Дата создания:</strong> <%= @group.created_at.strftime("%d %B %Y") %></p>
+  <p><strong>Последнее обновление:</strong> <%= @group.updated_at.strftime("%d %B %Y") %></p>
+</div>
+
+<div class="actions">
+  <%= link_to "Редактировать подгруппу", edit_group_path(@group), class: "btn btn-warning" %>
+  <%= link_to "Удалить подгруппу", @group, method: :delete, data: { confirm: "Вы уверены, что хотите удалить эту подгруппу?" }, class: "btn btn-danger" %>
+  <%= link_to "Назад к списку подгрупп", groups_path, class: "btn btn-secondary" %>
+  <%= link_to "Назад на главную страницу", '/' %>
+</div>
+
+<style>
+    .group-details {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+    }
+
+    .actions {
+        margin-top: 20px;
+    }
+
+    .btn {
+        margin-right: 10px;
+    }
+</style>

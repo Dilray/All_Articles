@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "groups/index"
+  get "groups/show"
+  get "groups/new"
+  get "groups/create"
+  get "groups/edit"
+  get "groups/update"
+  get "groups/destroy"
   resources :articles do
     collection do
       get :my_articles
@@ -7,6 +14,10 @@ Rails.application.routes.draw do
     member do
       post 'rate'
     end
+  end
+
+  resources :groups do
+    resources :articles
   end
   root "articles#index"
   # get 'articles/index' => 'articles#index'

@@ -529,6 +529,21 @@
   </div>
 </section>
 
+<h1>Список Subreddit</h1>
+
+<%= link_to 'Создать новый Subreddit', new_group_path %>
+
+<ul>
+  <% if @group != nil %>
+  <% @group.each do |subreddit| %>
+    <li>
+      <%= link_to subreddit.name, group_path(subreddit) %>
+      <p><%= subreddit.description %></p>
+    </li>
+  <% end %>
+  <% end %>
+</ul>
+
 <footer>
   <div class="footer-container">
     <p>&copy; 2024 Все права защищены. Создано с любовью.</p>

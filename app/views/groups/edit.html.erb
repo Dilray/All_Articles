@@ -1,0 +1,30 @@
+<%# app/views/groups/edit.html.erb %>
+
+<%= form_with(model: @group, local: true) do |form| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Название группы" %>
+    <%= form.text_field :name, value: @group.name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Описание группы" %>
+    <%= form.text_area :description, value: @group.description, rows: 5 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Сохранить изменения" %>
+    <%= link_to "Отменить", groups_path, class: "button" %>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_many :ratings
-
+  belongs_to :group
   after_create :create_initial_rating
 
   private def create_initial_rating
