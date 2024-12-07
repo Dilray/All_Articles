@@ -1,7 +1,14 @@
 <style>
+
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #eaceb6;
+      margin: 0;
+      padding: 0;
+  }
     .container {
         max-width: 600px;
-        margin: 0 auto;
+        margin: 10px auto;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -24,8 +31,9 @@
     .form-control {
         width: 100%;
         padding: 10px;
-        border-radius: 4px;
         border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
 
     .form-control:focus {
@@ -103,6 +111,16 @@
         margin-right: 5px;
     }
 
+  .buttons-container {
+      display: flex;
+      /* Изменение: Удаляем justify-content */
+      margin-top: 10px;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      gap: 20px;
+  }
+
 </style>
 
 <div class="container">
@@ -160,9 +178,9 @@
                   class: "btn btn-danger" %>
   </div>
 
+  <div class="buttons-container">
   <div class="logout-button">
     <%= button_to "Выйти из аккаунта", destroy_user_session_path, data: {turbo: "false"}, method: :delete, class: "btn btn-logout" %>
-  </div>
 
-
-<%= link_to "Назад", :back, class: "btn btn-secondary" %>
+  </div><%= link_to "Назад", :back, class: "btn btn-secondary" %>
+  </div></div>

@@ -4,7 +4,19 @@
   <title>Edit Article</title>
   <style>
       body {
-          font-family: sans-serif;
+          font-family: Arial, sans-serif;
+          background-color: #eaceb6;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
       h1 {
@@ -44,17 +56,50 @@
           border: 1px solid #ccc;
       }
 
-      .actions {
-          text-align: right;
+
+
+      .buttons-container {
+          display: flex;
+          /* Изменение: Удаляем justify-content */
+          margin-top: 10px;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 20px;
+          gap: 20px;
       }
 
-      .actions input {
-          margin-right: 10px;
+      .btn {
+          padding: 10px 15px;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+          background-color: #337ab7;
+          color: #fff;
+      }
+
+      .btn:hover {
+          background-color: #0056b3;
+          color: #fff;
+      }
+
+      .btn2 {
+          padding: 10px 15px;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+          background-color: #6c757d;
+          color: #fff;
+      }
+
+      .btn2:hover {
+          background-color: #5a6268;
+          color: #fff;
       }
   </style>
 </head>
 <body>
-<h1>Edit Article</h1>
+<div class = 'container'>
+<h1>Редактировать статью</h1>
 
 <%= form_with(model: @article, local: true) do |form| %>
   <% if @article.errors.any? %>
@@ -84,11 +129,13 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Update Article" %>
-  </div>
+  <div class="buttons-container">
+   <div class = 'btn'> <%= form.submit "Update Article" %></div>
+
 <% end %>
 
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Back', articles_path, class: 'btn2' %>
+  </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,10 @@
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #eaceb6;
+        margin: 0;
+        padding: 0;
+    }
     .search_results {
         margin: 20px auto;
         max-width: 800px;
@@ -37,7 +43,7 @@
 <div class="search_results">
 
   <% if @articles.empty? %>
-    <p> ничего не нашлось </p>
+    <p>Ничего не нашлось. Повторите запрос.</p>
   <% else %>
     <ul>
       <% @articles.each do |article| %>

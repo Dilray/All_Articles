@@ -1,6 +1,9 @@
 <style>
     body {
-        font-family: sans-serif;
+        font-family: Arial, sans-serif;
+        background-color: #eaceb6;
+        margin: 0;
+        padding: 0;
     }
 
     h1 {
@@ -11,16 +14,22 @@
     ul {
         list-style-type: none;
         padding: 0;
+        background-color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
     }
 
     li {
         margin-bottom: 20px;
         border-bottom: 1px solid #ccc;
+
     }
 
     .article-title {
         font-size: 20px;
         font-weight: bold;
+        text-align: right;
     }
 
     .read-more-link {
@@ -53,10 +62,18 @@
         display: flex;
         /* Изменение: Удаляем justify-content */
         margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 20px;
     }
 
     .create-new-article-button {
         /* Изменение: Удаляем margin-left: auto */
+    }
+
+    .text {
+        text-align: center;
     }
 </style>
 
@@ -67,16 +84,17 @@
     <% @articles.each do |article| %>
       <li>
         <h2><%= link_to article.title, article_path(article), class: "article-title" %></h2>
-        <p><%= truncate(article.content, length: 100) %></p>
-        <p><%= link_to 'Читать далее', article_path(article), class: "read-more-link" %></p>
+        <%= truncate(article.content, length: 100) %>
+        <%= link_to 'Читать далее', article_path(article), class: "read-more-link" %>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p>Вы пока ничего не публиковали...</p>
+  <div class="text"><p>Вы пока ничего не публиковали...</p></div>
 <% end %>
 
 <div class="buttons-container">
-  <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
   <%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary create-new-article-button' %>
+  <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
+
 </div>
