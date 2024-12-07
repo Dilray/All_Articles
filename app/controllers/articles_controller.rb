@@ -30,9 +30,11 @@ class ArticlesController < ApplicationController
   end
   def new
      @article = Article.new
+     @topics = Topic.all
   end
 
     def edit
+      @topics = Topic.all
     end
 
     def update
@@ -87,6 +89,7 @@ class ArticlesController < ApplicationController
       @rating = @article.ratings.find_or_create_by(user_id: current_user.full_name)
       @rating.score = params[:score]
 
+
       if @rating.save
         redirect_to root_path, notice: 'Рейтинг сохранён.'
       else
@@ -100,6 +103,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :author, :content)
+    params.require(:article).permit(:title, :author, :content, :topic_id)
   end
 end
