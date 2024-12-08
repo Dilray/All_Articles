@@ -11,6 +11,19 @@ Rails.application.routes.draw do
   
   root "articles#index"
 
+  # get 'articles/index' => 'articles#index'
+  # get 'articles/show' => 'articles#show'
+  # get 'articles/new' => 'articles#new'
+  # get 'articles/create' => 'articles#create'
+  # get 'articles/edit' => 'articles#edit'
+  # get 'articles/update' => 'articles#update'
+  get 'articles/my_articles' => "articles#my_articles"
+  #get 'articles/topics' => "articles#topics"
+  get 'topics' => 'articles#topics'
+
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+
   # Аутентификация
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
