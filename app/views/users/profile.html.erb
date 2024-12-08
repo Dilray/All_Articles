@@ -1,0 +1,26 @@
+<h1>Профиль пользователя: <%= current_user.full_name %></h1>
+<p>Email: <%= current_user.email %></p>
+<%= button_to "Изменить аккаунт", edit_user_registration_path %>
+<section>
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Автор</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td class="article-title"><%= article.title %></td>
+      <td class="article-author"><%= 'Вы' %></td>
+      <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
+      <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
+      <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</section>
