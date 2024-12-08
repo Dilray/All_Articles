@@ -22,6 +22,17 @@
 <h1>Выберите подходящую вам тему: </h1>
 <%= form_with(url: topics_path, method: :get, local: true) do |form| %>
   <%= form.label :topic_id, 'Выберите тему:' %>
-  <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' }, class: 'input' %>
+  <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: '' }, class: 'input' %>
   <%= form.submit 'Вывести', class: 'submit-button' %>
+<% end %>
+
+<% if @articles.any? %>
+  <h2>Статьи по выбранной теме:</h2>
+  <ul>
+    <% @articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article) %></li>
+    <% end %>
+  </ul>
+<% elsif params[:topic_id].present? %>
+  <p>Нет статей по выбранной теме.</p>
 <% end %>
