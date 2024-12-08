@@ -79,9 +79,6 @@ class ArticlesController < ApplicationController
   end
 
   def rate
-    puts(logger.debug(current_user))
-
-
     if current_user
       @article = Article.find(params[:id])
       @rating = @article.ratings.find_or_create_by(user_id: current_user.full_name)
@@ -90,10 +87,10 @@ class ArticlesController < ApplicationController
       if @rating.save
         redirect_to root_path, notice: 'Рейтинг сохранён.'
       else
-        render json: { error: 'Нвозможно сохранить рейтинг' }, status: :unprocessable_entity
+        render json: { error: 'Невозможно сохранить рейтинг' }, status: :unprocessable_entity
       end
     else
-    redirect_to new_user_session_path, notice: 'Вы должны войти или создать аккаунт.'
+      redirect_to new_user_session_path, notice: 'Вы должны войти или создать аккаунт.'
     end
   end
 
