@@ -380,7 +380,7 @@
     <% end %>
     <% if current_user %>
       <%#= image_tag(current_user.avatar_url) %>
-      <%= link_to "Изменить аккаунт", edit_user_registration_path %>
+      <%= link_to 'Профиль', profile_user_path(current_user.full_name) %>
       <div class="user-greeting">
         <h2>Привет, <%= current_user.full_name %>!</h2>
         <p>Рады видеть тебя снова!</p>
@@ -425,7 +425,6 @@
         <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
       <% end %>
       <td>
-        <!-- Модальное окно -->
           <div class="modal-content"><%= 'Оцените статью' %>
             <div class="rating-buttons">
               <% (1..5).each do |i| %>
