@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+
   end
   def new
      @article = Article.new
@@ -99,10 +100,15 @@ class ArticlesController < ApplicationController
     redirect_to new_user_session_path, notice: 'Вы должны войти или создать аккаунт.'
     end
   end
+  def topics
+    @topics = Topic.all
+  end
 
   private
 
   def article_params
     params.require(:article).permit(:title, :author, :content, :topic_id)
   end
+
+
 end

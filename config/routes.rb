@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   # get 'articles/edit' => 'articles#edit'
   # get 'articles/update' => 'articles#update'
   get 'articles/my_articles' => "articles#my_articles"
+  #get 'articles/topics' => "articles#topics"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
