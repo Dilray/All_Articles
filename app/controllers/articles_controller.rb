@@ -102,6 +102,10 @@ class ArticlesController < ApplicationController
   end
   def topics
     @topics = Topic.all
+    @articles = []
+    if params[:topic_id].present?
+      @articles = Article.where(topic_id: params[:topic_id])
+    end
   end
 
   private

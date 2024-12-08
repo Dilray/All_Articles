@@ -5,4 +5,23 @@
         margin: 0;
         padding: 0;
     }
+
+    .submit-button {
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
 </style>
+<h1>Выберите подходящую вам тему: </h1>
+<%= form_with(url: topics_path, method: :get, local: true) do |form| %>
+  <%= form.label :topic_id, 'Выберите тему:' %>
+  <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' }, class: 'input' %>
+  <%= form.submit 'Вывести', class: 'submit-button' %>
+<% end %>
