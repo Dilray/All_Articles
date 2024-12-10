@@ -120,7 +120,7 @@
     }
 
     .btn-show:hover {
-        background-color: #45a049; /* Темно-зеленый при наведении */
+        background-color: #1e88e5; /* Темно-зеленый при наведении */
     }
 
     .btn-edit:hover {
@@ -327,20 +327,21 @@
     }
 
     .user-greeting {
-        background-color: #f0f0f0;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
+        color: white;
+        padding: 5px 10px; /* отступы для кнопки */
+        border-radius: 5px;
+        text-decoration: none;
         font-family: Arial, sans-serif;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 0.5s ease-in-out;
+        font-weight: bold;
+        transition: background-color 0.3s;
     }
 
-    .user-greeting h2 {
-        font-family: 'Montserrat', sans-serif; /* Замените на выбранный шрифт */
-        font-size: 24px;
-        color: #333;
+    .user-greeting:hover {
+        background-color: #44af1a; /* Красный */
+        color: white;
     }
+
+
 
     @keyframes fadeIn {
         from {
@@ -372,7 +373,7 @@
       <%# end %>
 <!--    </div>-->
 
-    <a href="#">Новые статьи</a>
+    <%= link_to "Каталог", topics_path %>
     <% if current_user %>
       <%= link_to "Мои статьи", my_articles_articles_path %>
     <% else %>
@@ -382,8 +383,7 @@
       <%#= image_tag(current_user.avatar_url) %>
       <%= link_to 'Профиль', profile_user_path(current_user.full_name) %>
       <div class="user-greeting">
-        <h2>Привет, <%= current_user.full_name %>!</h2>
-        <p>Рады видеть тебя снова!</p>
+        Привет, <%= current_user.full_name %>!
       </div>
     <% else %>
       <%= link_to "Войти", new_user_session_path %>

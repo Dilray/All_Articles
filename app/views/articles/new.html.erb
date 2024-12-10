@@ -1,6 +1,9 @@
 <style>
     body {
+        font-family: Arial, sans-serif;
         background-color: #eaceb6;
+        margin: 0;
+        padding: 0;
     }
 
     .page-title {
@@ -10,17 +13,17 @@
     }
 
     .article-form {
-        background-color: #8b4513;
-        max-width: 600px;
-        margin: 0 auto; /* Центрирование формы */
+        max-width: 400px;
+        margin: 50px auto;
         padding: 20px;
-        border: 1px solid #ccc;
+        background-color: #fff;
         border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .field {
         margin-bottom: 15px;
-        background-color: #8b4513;
+
     }
 
     .label {
@@ -30,14 +33,20 @@
     }
 
     .input, .textarea {
-        width: 100%; /* Ширина на 100% */
+        width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        box-sizing: border-box;
     }
 
     .textarea {
         height: 150px; /* Высота текстовой области */
+    }
+
+    .input:focus, .textarea:focus {
+        border-color: #007BFF;
+        outline: none;
     }
 
     .error-explanation {
@@ -85,9 +94,10 @@
     }
 </style>
 
-<h1 class="page-title">Новая статья</h1>
+
 
 <%= form_with(model: @article, local: true, html: { class: 'article-form' }) do |form| %>
+  <h2 class="page-title">Новая статья</h2>
   <% if @article.errors.any? %>
     <div id="error_explanation" class="error-explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -102,6 +112,12 @@
   <div class="field">
     <%= form.label "Название", class: 'label' %>
     <%= form.text_field :title, class: 'input' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Тема", class: 'label' %>
+    <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' },
+                    class: 'input' %>
   </div>
 
   <div class="field">

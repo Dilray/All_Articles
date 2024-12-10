@@ -4,7 +4,19 @@
   <title>Edit Article</title>
   <style>
       body {
-          font-family: sans-serif;
+          font-family: Arial, sans-serif;
+          background-color: #eaceb6;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
       h1 {
@@ -29,32 +41,76 @@
           padding-left: 0;
       }
 
-      .field {
-          margin-bottom: 10px;
-      }
-
-      .field label {
+      .label {
+          display: block;
           font-weight: bold;
+          margin-bottom: 5px;
       }
 
-      .field input,
-      .field textarea {
+      .input, .textarea {
           width: 100%;
-          padding: 5px;
+          padding: 10px;
           border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
       }
 
-      .actions {
-          text-align: right;
+      .textarea {
+          height: 150px; /* Высота текстовой области */
       }
 
-      .actions input {
-          margin-right: 10px;
+      .input:focus, .textarea:focus {
+          border-color: #007BFF;
+          outline: none;
+      }
+
+
+      .buttons-container {
+          display: flex;
+          /* Изменение: Удаляем justify-content */
+          margin-top: 10px;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 20px;
+          gap: 20px;
+      }
+
+      .btn2 {
+          padding: 10px 15px;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+          background-color: #6c757d;
+          color: #fff;
+      }
+
+      .btn2:hover {
+          background-color: #5a6268;
+          color: #fff;
+      }
+
+      .submit-button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .submit-button:hover {
+          background-color: #0056b3;
+      }
+
+      .field {
+          margin-bottom: 15px;
+
       }
   </style>
 </head>
 <body>
-<h1>Edit Article</h1>
+<div class = 'container'>
+<h1>Редактировать статью</h1>
 
 <%= form_with(model: @article, local: true) do |form| %>
   <% if @article.errors.any? %>
@@ -70,25 +126,32 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label "Заголовок", class: 'label'%>
+    <%= form.text_field :title, class: 'input' %>
+  </div>
+
+    <div class="field">
+      <%= form.label "Тема", class: 'label'  %>
+      <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' },
+                      class: 'input' %>
+    </div>
+  <div class="field">
+    <%= form.label "Автор", class: 'label' %>
+    <%= form.text_field :author, class: 'input' %>
   </div>
 
   <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
+    <%= form.label "Текст", class: 'label' %>
+    <%= form.text_area :content , class: 'textarea'%>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+  <div class="buttons-container">
+    <%= form.submit 'Обновить статью', class: 'submit-button' %>
 
-  <div class="actions">
-    <%= form.submit "Update Article" %>
-  </div>
 <% end %>
 
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Назад', articles_path, class: 'btn2' %>
+  </div>
+</div>
 </body>
 </html>
