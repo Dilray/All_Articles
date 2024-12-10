@@ -17,7 +17,4 @@ class User < ApplicationRecord
       user.avatar_url = auth.info.image
     end
   end
-
-
-
 end
