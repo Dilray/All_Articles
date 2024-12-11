@@ -20,9 +20,8 @@ Rails.application.routes.draw do
   get 'articles/my_articles' => "articles#my_articles"
   #get 'articles/topics' => "articles#topics"
   get 'topics' => 'articles#topics'
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  
+  resources :topics, only: [:new, :create]
 
   # Аутентификация
   get '/auth/:provider/callback', to: 'sessions#create'

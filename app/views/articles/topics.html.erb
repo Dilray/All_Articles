@@ -29,7 +29,6 @@
     }
 
     .btn2 {
-
         padding: 5px 10px;
         border-radius: 4px;
         border: none;
@@ -43,23 +42,28 @@
         color: #fff;
     }
 </style>
-<div class = 'container'>
-<h1>Выберите подходящую вам тему: </h1>
-<%= form_with(url: topics_path, method: :get, local: true) do |form| %>
-  <%= form.label :topics_id, 'Выберите тему:' %>
-  <%= form.select :topics_id, @topics.collect { |topics| [topics.name, topics.id] }, { prompt: '' }, class: 'input' %>
-  <%= form.submit 'Вывести', class: 'submit-button' %>
-<% end %>
 
-<% if @articles.any? %>
-  <h2>Статьи по выбранной теме:</h2>
-  <ul>
-    <% @articles.each do |article| %>
-      <li><%= link_to article.title, article_path(article) %></li>
+<div class='container'>
+    <h1>Выберите подходящую вам тему:</h1>
+    <%= form_with(url: topics_path, method: :get, local: true) do |form| %>
+      <%= form.label :topics_id, 'Выберите тему:' %>
+      <%= form.select :topics_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: '' }, class: 'input' %>
+      <%= form.submit 'Вывести', class: 'submit-button' %>
     <% end %>
-  </ul>
-<% elsif params[:topics_id].present? %>
-  <p>Нет статей по выбранной теме.</p>
-<% end %>
-  <%= link_to 'Назад', articles_path, class: 'btn2' %>
+
+    <% if @articles.any? %>
+      <h2>Статьи по выбранной теме:</h2>
+      <ul>
+        <% @articles.each do |article| %>
+          <li><%= link_to article.title, article_path(article) %></li>
+        <% end %>
+      </ul>
+    <% elsif params[:topics_id].present? %>
+      <p>Нет статей по выбранной теме.</p>
+    <% end %>
+
+    <%= link_to 'Назад', articles_path, class: 'btn2' %>
+
+    <h2>Создать новую тему:</h2>
+    <%= link_to "Создать тему", new_topic_path, class: "submit-button" %>
 </div>

@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
-  has_many :topic
+  # has_many :topic
+  belongs_to :topic, optional: true
   has_many :ratings
   after_create :create_initial_rating
 

@@ -446,6 +446,19 @@
       </td>
       <!-- рЭйтинг -->
     </tr>
+
+    <!-- Вывод темы под статьей -->
+    <tr>
+      <td colspan="5" class="article-topic">
+        <% if article.topics_id.present? && article.topic %> <!-- Проверяем, есть ли topic_id и связанная тема -->
+          <h4>Тема:</h4>
+          <span style="background-color: #f0f0f0; border-radius: 5px; padding: 5px;"><%= article.topic.name %></span> <!-- Выводим название темы -->
+        <% else %>
+          <p>Тема отсутствует.</p>
+        <% end %>
+      </td>
+    </tr>
+
   <% end %>
   </tbody>
 </table>

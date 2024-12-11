@@ -94,8 +94,6 @@
     }
 </style>
 
-
-
 <%= form_with(model: @article, local: true, html: { class: 'article-form' }) do |form| %>
   <h2 class="page-title">Новая статья</h2>
   <% if @article.errors.any? %>
@@ -120,7 +118,6 @@
                     class: 'input' %>
   </div>
 
-
   <div class="field">
     <%= form.label "Текст вашей статьи", class: 'label' %>
     <%= form.text_area :content, class: 'textarea' %>
@@ -132,3 +129,4 @@
   </div>
 
 <% end %>
+

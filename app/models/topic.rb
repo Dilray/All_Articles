@@ -1,3 +1,3 @@
 class Topic < ApplicationRecord
-  belongs_to :article, foreign_key: 'topics_id'
+  has_many :articles
 end
