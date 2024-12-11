@@ -69,7 +69,7 @@
 
 <article>
   <h1><%= @article.title %></h1>
-
+  <p><i><%= @article.topic.name if @article.topic %></i></p>
   <p><%= @article.content %></p>
 
   <div class="buttons-container">

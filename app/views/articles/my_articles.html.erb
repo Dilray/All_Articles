@@ -75,8 +75,17 @@
     .text {
         text-align: center;
     }
-</style>
 
+    .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class = 'container'>
 <h1>Мои статьи</h1>
 
 <% if @articles.any? %>
@@ -97,4 +106,4 @@
   <%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary create-new-article-button' %>
   <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
 
-</div>
+</div></div>

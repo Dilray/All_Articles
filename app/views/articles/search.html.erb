@@ -45,6 +45,7 @@
   <% if @articles.empty? %>
     <p>Ничего не нашлось. Повторите запрос.</p>
   <% else %>
+    <h1>Найдено результатов: <%= @articles.length %></h1>
     <ul>
       <% @articles.each do |article| %>
         <li><%= link_to article do %><%= article.title %><% end %></li>

@@ -41,21 +41,28 @@
           padding-left: 0;
       }
 
-      .field {
-          margin-bottom: 10px;
-      }
-
-      .field label {
+      .label {
+          display: block;
           font-weight: bold;
+          margin-bottom: 5px;
       }
 
-      .field input,
-      .field textarea {
+      .input, .textarea {
           width: 100%;
-          padding: 5px;
+          padding: 10px;
           border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
       }
 
+      .textarea {
+          height: 150px; /* Высота текстовой области */
+      }
+
+      .input:focus, .textarea:focus {
+          border-color: #007BFF;
+          outline: none;
+      }
 
 
       .buttons-container {
@@ -66,20 +73,6 @@
           align-items: center;
           padding: 10px 20px;
           gap: 20px;
-      }
-
-      .btn {
-          padding: 10px 15px;
-          border-radius: 4px;
-          border: none;
-          cursor: pointer;
-          background-color: #337ab7;
-          color: #fff;
-      }
-
-      .btn:hover {
-          background-color: #0056b3;
-          color: #fff;
       }
 
       .btn2 {
@@ -94,6 +87,24 @@
       .btn2:hover {
           background-color: #5a6268;
           color: #fff;
+      }
+
+      .submit-button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .submit-button:hover {
+          background-color: #0056b3;
+      }
+
+      .field {
+          margin-bottom: 15px;
+
       }
   </style>
 </head>
@@ -115,26 +126,31 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label "Заголовок", class: 'label'%>
+    <%= form.text_field :title, class: 'input' %>
+  </div>
+
+    <div class="field">
+      <%= form.label "Тема", class: 'label'  %>
+      <%= form.select :topic_id, @topics.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' },
+                      class: 'input' %>
+    </div>
+  <div class="field">
+    <%= form.label "Автор", class: 'label' %>
+    <%= form.text_field :author, class: 'input' %>
   </div>
 
   <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label "Текст", class: 'label' %>
+    <%= form.text_area :content , class: 'textarea'%>
   </div>
 
   <div class="buttons-container">
-   <div class = 'btn'> <%= form.submit "Update Article" %></div>
+    <%= form.submit 'Обновить статью', class: 'submit-button' %>
 
 <% end %>
 
-<%= link_to 'Back', articles_path, class: 'btn2' %>
+<%= link_to 'Назад', articles_path, class: 'btn2' %>
   </div>
 </div>
 </body>

@@ -1,0 +1,65 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #eaceb6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn2 {
+
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .btn2:hover {
+        background-color: #5a6268;
+        color: #fff;
+    }
+</style>
+<div class = 'container'>
+<h1>Выберите подходящую вам тему: </h1>
+<%= form_with(url: topics_path, method: :get, local: true) do |form| %>
+  <%= form.label :topics_id, 'Выберите тему:' %>
+  <%= form.select :topics_id, @topics.collect { |topics| [topics.name, topics.id] }, { prompt: '' }, class: 'input' %>
+  <%= form.submit 'Вывести', class: 'submit-button' %>
+<% end %>
+
+<% if @articles.any? %>
+  <h2>Статьи по выбранной теме:</h2>
+  <ul>
+    <% @articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article) %></li>
+    <% end %>
+  </ul>
+<% elsif params[:topics_id].present? %>
+  <p>Нет статей по выбранной теме.</p>
+<% end %>
+  <%= link_to 'Назад', articles_path, class: 'btn2' %>
+</div>

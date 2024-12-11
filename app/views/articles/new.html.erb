@@ -115,6 +115,13 @@
   </div>
 
   <div class="field">
+    <%= form.label "Тема", class: 'label' %>
+    <%= form.select :topics_id, Topic.all.collect { |topic| [topic.name, topic.id] }, { prompt: 'Выберите тему' },
+                    class: 'input' %>
+  </div>
+
+
+  <div class="field">
     <%= form.label "Текст вашей статьи", class: 'label' %>
     <%= form.text_area :content, class: 'textarea' %>
   </div>

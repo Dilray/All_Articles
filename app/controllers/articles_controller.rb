@@ -27,12 +27,15 @@ class ArticlesController < ApplicationController
   end
 
   def show
+
   end
   def new
      @article = Article.new
+     @topics = Topic.all
   end
 
     def edit
+      @topics = Topic.all
     end
 
     def update
@@ -87,6 +90,7 @@ class ArticlesController < ApplicationController
       @rating = @article.ratings.find_or_create_by(user_id: current_user.full_name)
       @rating.score = params[:score]
 
+
       if @rating.save
         redirect_to root_path, notice: 'Рейтинг сохранён.'
       else
@@ -96,10 +100,19 @@ class ArticlesController < ApplicationController
     redirect_to new_user_session_path, notice: 'Вы должны войти или создать аккаунт.'
     end
   end
+  def topics
+    @topics = Topic.all
+    @articles = []
+    if params[:topics_id].present?
+      @articles = Article.where(topics_id: params[:topics_id])
+    end
+  end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :author, :content)
+    params.require(:article).permit(:title, :author, :content, :topics_id)
   end
+
+
 end
