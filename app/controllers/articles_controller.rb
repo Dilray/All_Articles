@@ -100,15 +100,15 @@ class ArticlesController < ApplicationController
   def topics
     @topics = Topic.all
     @articles = []
-    if params[:topic_id].present?
-      @articles = Article.where(topic_id: params[:topic_id])
+    if params[:topics_id].present?
+      @articles = Article.where(topics_id: params[:topics_id])
     end
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :author, :content, :topic_id)
+    params.require(:article).permit(:title, :author, :content, :topics_id)
   end
 
 

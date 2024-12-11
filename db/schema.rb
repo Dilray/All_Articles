@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_07_204656) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_11_165031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,7 +22,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_07_204656) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id"
-    t.integer "topic_id"
+    t.bigint "topics_id"
+    t.index ["topics_id"], name: "index_articles_on_topics_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -33,10 +34,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_07_204656) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", id: :bigint do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: false, force: :cascade do |t|
@@ -52,4 +51,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_07_204656) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "articles", "topics", column: "topics_id"
 end
