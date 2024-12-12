@@ -1,6 +1,6 @@
 <h1>Профиль пользователя: <%= current_user.full_name %></h1>
 <p>Email: <%= current_user.email %></p>
-<%= button_to "Изменить аккаунт", edit_user_registration_path %>
+<%= link_to "Изменить аккаунт", edit_user_registration_path, class: "btn btn-primary" %>
 <section>
 <table>
   <thead>
