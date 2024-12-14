@@ -18,13 +18,15 @@
   <%= link_to "Не получили инструкции по разблокировке?", new_unlock_path(resource_name) %><br /><br />
 <% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= form_for "Login",
-                 url: omniauth_authorize_path(resource_name, provider),
-                 method: :post,
-                 data: {turbo: "false"} do |f| %>
-    <%= link_to "Войти через Google" %>
-    <% end %>
-  <% end %>
-<% end %>
+<%# 
+  if devise_mapping.omniauthable? 
+    resource_class.omniauth_providers.each do |provider| 
+      form_for "Login",
+               url: omniauth_authorize_path(resource_name, provider),
+               method: :post,
+               data: {turbo: "false"} do |f| 
+        link_to "Войти через Google" 
+      end 
+    end 
+  end 
+%>

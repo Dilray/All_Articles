@@ -354,24 +354,62 @@
         }
     }
 
+    .btn-more {
+  background-color: #007bff; /* Цвет фона кнопки */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем границу */
+}
+
+.btn-more:hover {
+  background-color: #0056b3; /* Цвет фона при наведении */
+  color: #e0e0e0; /* Цвет текста при наведении */
+  transform: scale(1.05); /* Увеличение размера кнопки при наведении */
+}
+
+.btn-more:focus {
+  outline: none; /* Убираем обводку при фокусе */
+}
+
+/* Стили для поля поиска */
+.search-input {
+  width: 200px; /* Ширина поля ввода */
+  padding: 10px; /* Отступы внутри поля */
+  border: 1px solid #ccc; /* Цвет рамки */
+  border-radius: 4px; /* Закругленные углы */
+  transition: border-color 0.3s; /* Плавный переход при наведении */
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Цвет рамки при фокусе */
+  outline: none; /* Убираем стандартный контур */
+}
+
+/* Стили для кнопки поиска */
+.search-button {
+  padding: 10px 15px; /* Отступы внутри кнопки */
+  background-color: #007bff; /* Цвет фона кнопки */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем рамку */
+  border-radius: 4px; /* Закругленные углы */
+  cursor: pointer; /* Курсор при наведении */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Цвет фона при наведении */
+}
+
 </style>
 
 <div class="navbar">
-  <h1 class="header-title">AllArticles</h1>
+  <h1 class="header-title">
+    AllArticles
+  </h1>
   <div class="navbar-links">
-
     <%= form_with url: search_articles_path, method: :post, id: "search-form" do |form| %>
-      <%= form.search_field :title_search, onkeypress: "if(event.keyCode == 13) this.form.requestSubmit()", style:"Width: 100%;" %>
+      <%= form.search_field :title_search, onkeypress: "if(event.keyCode == 13) this.form.requestSubmit()", class: "search-input" %>
+      <button type="submit" form="search-form" class="search-button">Найти</button>
     <% end %>
-    <button type="submit" form="search-form">Найти</button>
-<!--    <div id="search_results">-->
-<!--      Search Results-->
-<!--    </div>-->
-<!--    <div id="articles">-->
-      <%#  @articles.each do |article| %>
-      <%#= render article %>
-      <%# end %>
-<!--    </div>-->
 
     <%= link_to "Каталог", topics_path %>
     <% if current_user %>
@@ -380,7 +418,6 @@
       <a href="<%= new_user_session_path %>">Свои статьи</a>
     <% end %>
     <% if current_user %>
-      <%#= image_tag(current_user.avatar_url) %>
       <%= link_to 'Профиль', profile_user_path(current_user.full_name) %>
       <div class="user-greeting">
         Привет, <%= current_user.full_name %>!
@@ -391,84 +428,91 @@
     <% end %>
   </div>
 </div>
+
+
 <% if current_user %>
 <%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
   <% else %>
   <%= button_to 'Новая статья', new_user_session_path, method: :get, class: 'btn btn-primary' %>
 <% end %>
-<div class="container">
-  <section class="articles">
-    <h2 class="article-section-title">Недавние статьи</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Название</th>
-    <th>Автор</th>
-<!--    <th>Content</th>-->
-    <th colspan="2"></th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% @articles.each do |article| %>
-    <tr>
-      <td class="article-title"><%= article.title %></td>
-      <td class="article-author"><%= article.author %></td>
-<!--      <td><%#= article.content %></td>-->
-      <% if current_user %>
-      <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
-        <% if current_user.full_name == article.author %>
-      <td><%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %></td>
-          <td><%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %></td> <!-- "вы уверены?" пока не работает хз почему -->
+<div class="container">
+<section class="articles" style="max-height: 1200px; overflow-y: auto;">
+  <h2 class="article-section-title">Новые статьи</h2>
+
+  <% @articles.first(10).each do |article| %>
+    <article class="article">
+      <header class="article-header">
+        <h3 class="article-title"><%= article.title %></h3>
+        <p class="article-author">Автор: <%= article.author %></p>
+      </header>
+
+      <div class="article-actions" style="display: flex; gap: 10px;">
+        <% if current_user %>
+          <%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %>
+          <% if current_user.full_name == article.author %>
+            <%= button_to 'Изменить', edit_article_path(article), method: :get, class: 'btn btn-edit' %>
+            <%= button_to 'Удалить', article_path(article), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %>
           <% end %>
-      <% else %>
-        <td><%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %></td>
-      <% end %>
-      <td>
-          <div class="modal-content"><%= 'Оцените статью' %>
-            <div class="rating-buttons">
+        <% else %>
+          <%= button_to 'Показать', article_path(article), method: :get, class: 'btn btn-show' %>
+        <% end %>
+      </div>
+
+      <footer class="article-footer">
+        <div class="rating-section">
+          <div class="modal-content" style="display: flex; align-items: center;">
+            <span style="font-weight: bold; margin-right: 10px;">Оцените статью:</span>
+            <div class="rating-buttons" style="display: flex; gap: 5px;">
               <% (1..5).each do |i| %>
                 <%= button_to i, rate_article_path(article, score: i), method: :post, class: 'rating-button' %>
               <% end %>
             </div>
           </div>
-      </td>
-        <!-- рЭйтинг -->
-      <td class="article-rating">
-        <% (1..5).each do |i| %>
-          <% if i <= article.average_rating.round %>
-            <span class="star filled" data-value="<%= i %>">★</span> 
-          <% else %>
-            <span class="star" data-value="<%= i %>">☆</span>
-          <% end %>
-        <% end %>
-        <div class="average-rating">Average Rating: <span id="average-rating-<%= article.id %>"><%= article.average_rating %></span></div>
-      </td>
-      <!-- рЭйтинг -->
-    </tr>
 
-    <!-- Вывод темы под статьей -->
-    <tr>
-      <td colspan="5" class="article-topic">
-        <% if article.topics_id.present? %> <!-- Проверяем, есть ли topic_id и связанная тема -->
-          <% topic = @topics.find { |t| t.id == article.topics_id } %>
-          <% if topic %> <!-- Проверяем, найдена ли тема -->
-            <h4>Тема:</h4>
-            <span style="background-color: #f0f0f0; border-radius: 5px; padding: 5px;"><%= topic.name %></span> <!-- Выводим название темы -->
+          <div class="article-rating" style="display: flex; align-items: center; margin-top: 10px;">
+            <% (1..5).each do |i| %>
+              <% if i <= article.average_rating.round %>
+                <span class="star filled" data-value="<%= i %>">★</span> 
+              <% else %>
+                <span class="star" data-value="<%= i %>">☆</span>
+              <% end %>
+            <% end %>
+            <div class="average-rating" style="margin-left: 10px;">Рейтинг статьи: <span id="average-rating-<%= article.id %>"><%= article.average_rating %></span></div>
+          </div>
+        </div>
+
+        <!-- Вывод темы под статьей -->
+        <div class="article-topic">
+          <% if article.topics_id.present? %>
+            <% topic = @topics.find { |t| t.id == article.topics_id } %>
+            <% if topic %>
+              <h4>Тема:</h4>
+              <span style="background-color: #f0f0f0; border-radius: 5px; padding: 5px; color: black;"><%= topic.name %></span>
+            <% else %>
+              <p>Тема отсутствует.</p>
+            <% end %>
           <% else %>
             <p>Тема отсутствует.</p>
           <% end %>
-        <% else %>
-          <p>Тема отсутствует.</p>
-        <% end %>
-      </td>
-    </tr>
-    
-
+        </div>
+      </footer>
+    </article>
   <% end %>
-  </tbody>
-</table>
+
+  <!-- Кнопка "Показать ещё статьи" -->
+  <% if @articles.size > 8 %>
+    <div style="text-align: center; margin-top: 20px;">
+      <%= link_to 'Показать ещё статьи', topics_path, class: 'btn btn-more' %>
+    </div>
+  <% end %>
 </section>
+
+
+
+
+
+
 
 
   <section class="news-feed">
@@ -487,10 +531,10 @@
     </div>
     <h2>Последние новости в мире литературы (англ.)</h2>
     <div class="news-categories">
-      <button class="category-btn" data-category="all">Все</button>
-      <button class="category-btn" data-category="classic">Классика</button>
-      <button class="category-btn" data-category="modern">Современная проза</button>
-      <button class="category-btn" data-category="sf">Научная фантастика</button>
+    <!-- <button class="category-btn" data-category="all">Все</button> -->
+    <!-- <button class="category-btn" data-category="classic">Классика</button> -->
+    <!-- <button class="category-btn" data-category="modern">Современная проза</button> -->
+    <!-- <button class="category-btn" data-category="sf">Научная фантастика</button> -->
     </div>
     <div class="news-list">
       <% @rsss.items.each_with_index do |item, index| %>

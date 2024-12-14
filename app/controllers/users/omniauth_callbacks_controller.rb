@@ -21,6 +21,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def passthru
+    # Это метод, который вызывается при ошибке аутентификации.
+    redirect_to new_user_registration_url, alert: "Authentication failed."
+  end
+
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
