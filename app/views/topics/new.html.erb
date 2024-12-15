@@ -1,3 +1,83 @@
+<style>
+body {
+          font-family: Arial, sans-serif;
+          background-color: #eaceb6;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+      }
+
+      .input, .textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+
+      .textarea {
+          height: 150px; /* Высота текстовой области */
+      }
+
+      .input:focus, .textarea:focus {
+          border-color: #007BFF;
+          outline: none;
+      }
+
+      .submit-button {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .submit-button:hover {
+          background-color: #0056b3;
+      }
+
+      .btn2 {
+          padding: 10px 15px;
+          border-radius: 4px;
+          border: none;
+          cursor: pointer;
+          background-color: #6c757d;
+          color: #fff;
+      }
+
+      .btn2:hover {
+          background-color: #5a6268;
+          color: #fff;
+      }
+
+      .buttons-container {
+          display: flex;
+          /* Изменение: Удаляем justify-content */
+          margin-top: 10px;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 20px;
+          gap: 20px;
+      }
+</style>
+
+<div class="container">
+  <h1>Добавить тему</h1>
 <%= form_with model: @topic, local: true do |form| %>
     <% if @topic.errors.any? %>
       <div id="error_explanation">
@@ -12,12 +92,14 @@
     <% end %>
   
     <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.label "Тема", class: 'label' %>
+      <%= form.text_field :name, class: 'input' %>
     </div>
   
-    <div class="actions">
-      <%= form.submit %>
-    </div>
+    <div class="buttons-container">
+      <%= form.submit "Создать тему", class: 'submit-button' %>
+    
   <% end %>
-  <%= link_to 'Назад', articles_path %>
+  <%= link_to 'Назад', articles_path, class: 'btn2' %>
+ </div>
+ </div>
