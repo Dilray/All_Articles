@@ -23,13 +23,11 @@
     li {
         margin-bottom: 20px;
         border-bottom: 1px solid #ccc;
-
     }
 
     .article-title {
         font-size: 20px;
         font-weight: bold;
-        text-align: right;
     }
 
     .read-more-link {
@@ -60,16 +58,11 @@
 
     .buttons-container {
         display: flex;
-        /* Изменение: Удаляем justify-content */
         margin-top: 10px;
         justify-content: center;
         align-items: center;
         padding: 10px 20px;
         gap: 20px;
-    }
-
-    .create-new-article-button {
-        /* Изменение: Удаляем margin-left: auto */
     }
 
     .text {
@@ -84,17 +77,39 @@
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
+
+    .article-author {
+        font-size: 0.9em;
+        color: gray;
+    }
+
+    .publication-date {
+        font-size: 0.9em;
+        color: gray;
+        margin-left: 10px;
+    }
 </style>
-<div class = 'container'>
+
+<div class='container'>
 <h1>Мои статьи</h1>
 
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
       <li>
-        <h2><%= link_to article.title, article_path(article), class: "article-title" %></h2>
-        <%= truncate(article.content, length: 100) %>
-        <%= link_to 'Читать далее', article_path(article), class: "read-more-link" %>
+        <h2 class="article-title">
+          <%= link_to article.title, article_path(article) %>
+        </h2>
+        <p class="article-author">
+          Автор: <%= article.author %>
+          <span class="publication-date">
+            <%= I18n.l(article.created_at, format: :default) if article.created_at %>
+          </span>
+        </p>
+        <p>
+          <%= truncate(article.content, length: 100) %>
+          <%= link_to 'Читать далее', article_path(article), class: "read-more-link" %>
+        </p>
       </li>
     <% end %>
   </ul>
@@ -103,7 +118,7 @@
 <% end %>
 
 <div class="buttons-container">
-  <%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary create-new-article-button' %>
+  <%= link_to 'Создать новую статью', new_article_path, class: 'btn btn-primary' %>
   <%= link_to "Назад", root_path, class: "btn btn-secondary" %>
-
-</div></div>
+</div>
+</div>

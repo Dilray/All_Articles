@@ -443,8 +443,15 @@
   <% @articles.first(10).each do |article| %>
     <article class="article">
       <header class="article-header">
-        <h3 class="article-title"><%= article.title %></h3>
-        <p class="article-author">Автор: <%= article.author %></p>
+        <h3 class="article-title">
+          <%= article.title %>
+        </h3>
+        <p class="article-author">
+          Автор: <%= article.author %>
+          <span class="publication-date" style="font-size: 0.9em; color: gray; margin-left: 10px;">
+            <%= I18n.l(article.created_at, format: :default) if article.created_at %>
+          </span>
+        </p>
       </header>
 
       <div class="article-actions" style="display: flex; gap: 10px;">
@@ -507,6 +514,8 @@
     </div>
   <% end %>
 </section>
+
+
 
 
 
