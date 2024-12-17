@@ -80,7 +80,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+    url: <%= ENV["MY_APP_DATABASE_URL"] %>
   cache:
     <<: *primary_production
     database: all_articles_production_cache
