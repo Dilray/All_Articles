@@ -161,6 +161,7 @@
 
     .articles {
         /* Стиль для левой колонки */
+        
     }
 
     .news-feed {
@@ -192,6 +193,7 @@
 
     .news-feed {
         /* Стиль для правой колонки */
+                font-family: Arial, sans-serif;
         background-color: #f0f0f0;
         padding: 20px;
         border-radius: 10px;
@@ -399,6 +401,56 @@
   background-color: #0056b3; /* Цвет фона при наведении */
 }
 
+/* Стили для секции авторов */
+#authors {
+  background-color: #50463d; /* коричненвый фон */
+  padding: 40px; /* Отступы вокруг секции */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+  margin: 20px 0; /* Отступ сверху и снизу */
+}
+
+#authors h2 {
+  text-align: center; /* Центрирование заголовка */
+  font-size: 2em; /* Размер шрифта заголовка */
+  color: #fff; /* Цвет текста заголовка */
+  font-family: Arial, sans-serif;
+  margin-bottom: 30px; /* Отступ снизу заголовка */
+}
+
+.author {
+  font-family: Arial, sans-serif;
+  background-color: #fff; /* Белый фон для каждого автора */
+  padding: 20px; /* Отступы внутри блока автора */
+  border-radius: 5px; /* Скругленные углы блока автора */
+  margin-bottom: 20px; /* Отступ между блоками авторов */
+  transition: transform 0.3s, box-shadow 0.3s; /* Плавный переход при наведении */
+}
+
+.author:hover {
+  transform: translateY(-5px); /* Подъем блока при наведении */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Увеличение тени при наведении */
+}
+
+.author h3 {
+  font-size: 1.5em; /* Размер шрифта для имени автора */
+  color: black; /* Цвет текста имени автора */
+  margin-bottom: 10px; /* Отступ снизу имени автора */
+}
+
+.author p {
+  font-size: 1em; /* Размер шрифта для биографии автора */
+  color: #black; /* Цвет текста биографии */
+}
+
+blockquote {
+  font-style: italic; /* Курсив для текста цитаты */
+  color: #black; /* Цвет текста цитаты */
+  border-left: 4px solid #50463d; /* Левая граница для выделения цитаты */
+  padding-left: 20px; /* Отступ слева для текста цитаты */
+  margin: 10px 0; /* Отступ сверху и снизу */
+}
+
 </style>
 
 <div class="navbar">
@@ -440,7 +492,7 @@
 <section class="articles" style="max-height: 1200px; overflow-y: auto;">
   <h2 class="article-section-title">Новые статьи</h2>
 
-  <% @articles.first(10).each do |article| %>
+  <% @articles.sort_by(&:created_at).reverse.first(10).each do |article| %>
     <article class="article">
       <header class="article-header">
         <h3 class="article-title">
@@ -515,15 +567,6 @@
   <% end %>
 </section>
 
-
-
-
-
-
-
-
-
-
   <section class="news-feed">
     <h2>Новости в мире</h2>
     <div class="news-list">
@@ -587,18 +630,42 @@
 <section class="reviews">
   <h2><font face="Arial">Отзывы: </font></h2>
   <div class="review">
-    <p>"Отличный сайт! надеюсь, его создатели получат зачёт по Ruby."</p>
+    <p>"Отличный сайт! Надеюсь, его создатели получат зачёт по Ruby."</p>
     <p>- Иван Иванов</p>
   </div>
   <div class="review">
-    <p>"Много интересных статей на любые темы."</p>
+    <p>"Много интересных статей на любые темы. Как развлекательные, так и научные."</p>
     <p>- Мария Петрова</p>
   </div>
   <div class="review">
-    <p>"Крайне полезный сайт для времяпровождения в маршрутке или в очереди в поликлинику."</p>
+    <p>"Здорово, что благодаря этому сайту, каждый человек может поделиться своими знаниями или опытом с другими."</p>
     <p>- Сергей Сидоров</p>
   </div>
 </section>
+
+<!-- Секция с авторами -->
+<section id="authors">
+  <h2>Авторы сайта</h2>
+  <div class="author">
+    <h3>Кулишов Егор</h3>
+    <blockquote>
+      <p>Всегда хотелось написать свой собственный сайт. Это, можно сказать, "база" программиста в начале освоения web-технологий.</p>
+    </blockquote>
+  </div>
+  <div class="author">
+    <h3>Константин Пинчук</h3>
+    <blockquote>
+    <p></p> <!-- Тут можно что-то написать -->
+    </blockquote>
+  </div>
+  <div class="author">
+    <h3>Константин Слащев</h3> 
+    <blockquote>
+    <p> </p> <!-- Тут можно что-то написать -->
+    </blockquote>
+  </div>
+</section>
+
 
 <footer>
   <div class="footer-container">
