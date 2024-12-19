@@ -63,6 +63,10 @@
     <% end %>
 
     <h2>Создать новую тему:</h2>
+    <% if current_user %>
     <%= link_to "Создать тему", new_topic_path, class: "submit-button" %>
+    <% else %>
+    <%= link_to "Создать тему", new_user_session_path, class: "submit-button" %>
+  <% end %>
     <%= link_to 'Назад', articles_path, class: 'btn2' %>
 </div>
