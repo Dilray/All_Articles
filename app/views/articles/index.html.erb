@@ -17,14 +17,14 @@
 
     /* Навигационная панель */
     .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #50463d;
-        padding: 10px 20px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #50463d;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
     .navbar-links {
         display: flex;
@@ -32,13 +32,13 @@
     }
 
     .navbar-links a {
-        color: white;
-        text-decoration: none;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+            color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
     }
 
     .navbar-links a:hover {
@@ -58,6 +58,35 @@
     .navbar-links a.login-button:hover {
         background-color: #0056b3; /* цвет при наведении */
     }
+
+    @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .navbar-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .navbar-links a {
+        font-size: 14px;
+    }
+}
 
     /* Стили для основного контейнера статей */
     /*.articles {
@@ -298,6 +327,7 @@
         margin-bottom: 30px;
         /*overflow-y: auto;*/
     }
+    
 
     .about-mission, .about-values, .about-team {
         margin-bottom: 30px;
@@ -655,7 +685,7 @@ blockquote {
   <div class="author">
     <h3>Пинчук Константин</h3>
     <blockquote>
-    <p></p> <!-- Тут можно что-то написать -->
+    <p>Это наш первый опыт создания сайта. Я считаю, что в дальнейшем мы будем еще больше прокачивать свои навыки в web-разработке!</p>
     </blockquote>
   </div>
   <div class="author">
