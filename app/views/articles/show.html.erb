@@ -95,7 +95,9 @@
       </span>
   </div>
 
-  <p><%= @article.content %></p>
+  <% @article.content.split("\n\n").each do |paragraph| %>
+      <p><%= paragraph.strip.html_safe %></p>
+  <% end %>
 
   <div class="buttons-container">
     <% if current_user %>
