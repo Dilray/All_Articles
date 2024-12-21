@@ -5,5 +5,40 @@
           margin: 0;
           padding: 0;
       }
-      
-    </style>
+
+      article {
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        line-height: 1.5rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    a:hover {
+        color: #666;
+    }
+</style>
+
+<article>
+    <h1><%= "Политика конфиденциальности" %></h1>
+    <% rules = File.read(Rails.root.join('public/rules.txt')).split("\n\n") %>
+    <% rules.each do |rule| %>
+        <p><%= rule.strip.html_safe %></p>
+    <% end %>
+</article>
