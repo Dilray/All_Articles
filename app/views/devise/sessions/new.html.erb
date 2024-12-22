@@ -103,12 +103,12 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-form' }) do |f| %>
     <div class="field">
       <%#= f.label "Почта" %>
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Почта" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Почта" %>
     </div>
 
     <div class="field">
       <%#= f.label "Пароль" %>
-      <%= f.text_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Пароль" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Пароль" %>
     </div>
 
     <% if devise_mapping.rememberable? %>

@@ -1,3 +1,20 @@
+<style>
+  body {
+        font-family: Arial, sans-serif;
+        background-color: #eaceb6;
+        margin: 0;
+        padding: 0;
+    }
+    .login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 <h2>Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
