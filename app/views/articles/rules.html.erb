@@ -33,6 +33,37 @@
     a:hover {
         color: #666;
     }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #0069d9;
+    }
+
+    .button-back {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #6c757d;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .button-back:hover {
+        background-color: #5a6268;
+    }
+
 </style>
 
 <article>
@@ -41,4 +72,7 @@
     <% rules.each do |rule| %>
         <p><%= rule.strip.html_safe %></p>
     <% end %>
+    <%= link_to "Написать нам", "mailto:kpinchuk@sfedu.ru", class: "button" %>
+    <%= link_to "На главную", "/", class: "button-back" %>
+
 </article>
