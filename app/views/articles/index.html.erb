@@ -513,9 +513,9 @@ blockquote {
 
 
 <% if current_user %>
-<%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
+    <%= button_to 'Новая статья', new_article_path, method: :get, class: 'btn btn-primary' %>
   <% else %>
-  <%= button_to 'Новая статья', new_user_session_path, method: :get, class: 'btn btn-primary' %>
+    <%= button_to 'Новая статья', new_user_session_path, method: :get, class: 'btn btn-primary' %>
 <% end %>
 
 <div class="container">
